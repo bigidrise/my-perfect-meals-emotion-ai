@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
+  ArrowUp,
   RefreshCw,
   Sparkles,
   Clock,
@@ -808,6 +809,16 @@ const FridgeRescuePage = () => {
             </div>
           </div>
         )}
+
+        {/* Floating Back-to-Top Arrow */}
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="bg-black/30 backdrop-blur-lg border border-white/20 hover:bg-black/40 shadow-xl hover:shadow-2xl transition-all duration-200 rounded-full p-3 text-white"
+          >
+            <ArrowUp className="h-5 w-5" />
+          </button>
+        </div>
       </div>
     </motion.div>
     </PhaseGate>
