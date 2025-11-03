@@ -1,0 +1,129 @@
+# ============================================
+# My Perfect Meals - Environment Variables
+# ============================================
+# Copy this file to `.env` and fill in your actual values
+# Lines marked with "PLACEHOLDER" need your real API keys/values
+# Lines marked with "OPTIONAL" can be left as-is for development
+# Last updated: Oct 15, 2025
+# ============================================
+# CORE CONFIGURATION
+# ============================================
+NODE_ENV=development
+PORT=5000
+
+# ============================================
+# DATABASE (Required)
+# ============================================
+# PLACEHOLDER: Use your actual database URL
+DATABASE_URL=postgresql://user:password@host.region.provider.com/database?sslmode=require
+
+# ============================================
+# OPENAI API (Required for AI meal generation)
+# ============================================
+# PLACEHOLDER: Get from https://platform.openai.com/api-keys
+OPENAI_API_KEY=sk-proj-PLACEHOLDER_your_openai_api_key_here
+
+# OPTIONAL: Set to true to disable AI image generation
+DISABLE_IMAGE_GEN=false
+
+# ============================================
+# STRIPE PAYMENTS (Required for subscriptions)
+# ============================================
+# PLACEHOLDER: Get from https://dashboard.stripe.com/apikeys
+STRIPE_SECRET_KEY=sk_test_PLACEHOLDER_your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=whsec_PLACEHOLDER_your_stripe_webhook_secret
+
+# PLACEHOLDER: Get from Stripe Dashboard → Publishable key
+VITE_STRIPE_PUBLIC_KEY=pk_test_PLACEHOLDER_your_stripe_public_key
+
+# Checkout redirect URLs (leave as-is for local development)
+APP_SUCCESS_URL=http://localhost:5000/checkout/success
+APP_CANCEL_URL=http://localhost:5000/pricing?cancel=1
+
+# ============================================
+# FEATURE FLAGS
+# ============================================
+# Hormone & Life Stages Feature (Beta - Doctor Review Required)
+# Set to true to enable hormone preset features for testing/review
+# Safe default: false (disabled until explicitly enabled)
+VITE_FEATURE_HORMONE_LIFE_STAGES=true
+
+# Hormone Preview Clinical Recipes (Doctor Review Only)
+# Set to true to enable clinical preview weekly boards with 20 sample recipes
+# Shows "Preview Weekly Board" links in hormone presets for physician evaluation
+# Safe default: false (disabled for controlled rollout to clinicians)
+VITE_FEATURE_HORMONE_PREVIEW=false
+
+# Development shortcuts (set to true to unlock all features without subscriptions)
+UNLOCK_ALL_FEATURES=false
+
+# ============================================
+# DEVTOOLS (Development Only)
+# ============================================
+# DevTools UI Controls (floating debug panel, onboarding reset buttons)
+# Set to 1 to enable DevTools in development mode
+# MUST be 0 (or unset) in production - DevTools are ALWAYS disabled in production builds
+# Safe default: 0 (disabled for production safety)
+# Only enable locally when you need debugging controls
+VITE_SHOW_DEVTOOLS=0
+
+# ============================================
+# OPTIONAL: COMMUNICATION SERVICES
+# ============================================
+# SendGrid Email (for transactional emails)
+# PLACEHOLDER: Get from https://app.sendgrid.com/settings/api_keys
+SENDGRID_API_KEY=SG.PLACEHOLDER_your_sendgrid_key
+
+# Twilio SMS (for text message notifications)
+# PLACEHOLDER: Get from https://console.twilio.com/
+TWILIO_ACCOUNT_SID=PLACEHOLDER_your_account_sid
+TWILIO_AUTH_TOKEN=PLACEHOLDER_your_auth_token
+TWILIO_FROM_NUMBER=+1PLACEHOLDER
+
+# ElevenLabs Voice (for AI voice features)
+# PLACEHOLDER: Get from https://elevenlabs.io/
+ELEVENLABS_API_KEY=PLACEHOLDER_your_elevenlabs_key
+
+# ============================================
+# OPTIONAL: WEB PUSH NOTIFICATIONS
+# ============================================
+# PLACEHOLDER: Generate with `npx web-push generate-vapid-keys`
+VAPID_PUBLIC_KEY=PLACEHOLDER_your_vapid_public_key
+VAPID_PRIVATE_KEY=PLACEHOLDER_your_vapid_private_key
+
+# ============================================
+# OPTIONAL: ADVANCED SETTINGS
+# ============================================
+# Session secret (for authentication)
+SESSION_SECRET=generate-a-long-random-string-here
+
+# Timezone
+DEFAULT_TZ=America/New_York
+
+# Admin key for protected endpoints
+ADMIN_KEY=your-admin-key-here
+
+# ============================================
+# DEPLOYMENT ONLY (Railway/Production)
+# ============================================
+# Only needed when deploying to Railway or production
+# CORS_ORIGIN=https://your-app.railway.app,https://your-custom-domain.com
+# APP_ORIGIN=https://your-app.railway.app
+# RAILWAY_ENVIRONMENT=production
+
+# ============================================
+# INTERNAL SETTINGS (Don't modify unless you know what you're doing)
+# ============================================
+# API URLs
+API_BASE_URL=http://localhost:5000
+APP_BASE_URL=http://localhost:5000
+VITE_API_BASE_URL=http://localhost:5000
+
+# Meal generation engine
+MEALGEN_V2=true
+MEALGEN_MAX_TRIES=3
+MEALGEN_TIMEOUT_MS=60000
+
+# Rate limiting
+MEAL_ENGINE_RATE_LIMIT=60
+COST_MAX_CALLS_PER_USER=50

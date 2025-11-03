@@ -1,0 +1,278 @@
+
+🏥 ProCare Feature - Complete System Documentation
+Overview
+ProCare is a professional portal that allows healthcare providers (doctors, nurses, dietitians, trainers) to manage client meal plans, set macro targets, track medical directives, and schedule follow-ups. It's designed for both clinical professionals and fitness trainers with role-specific features.
+
+🎯 Core Concept
+ProCare enables professionals to:
+
+Add and manage multiple clients
+Set personalized macro targets (calories, protein, carbs, fat)
+Define medical/performance dietary directives (low-sodium, diabetic-friendly, high-protein, etc.)
+Generate 7-day meal plans from a recipe bank
+Schedule clinical follow-ups
+Track client progress
+📁 File Structure
+client/src/
+├── pages/
+│   ├── ProPortal.tsx                    # Landing page (Coming Soon notice)
+│   └── pro/
+│       ├── ProClients.tsx               # Client list & management
+│       └── ProClientDashboard.tsx       # Individual client dashboard
+└── lib/
+    └── proData.ts                       # All data logic (localStorage-based)
+
+🗂️ Data Models
+1. ClientProfile
+export type ClientProfile = {
+  id: string;           // UUID
+  name: string;         // Client name
+  email?: string;       // Optional email
+  notes?: string;       // Optional notes
+  role?: ProRole;       // Professional's role (set at client creation)
+  archived?: boolean;   // Soft delete flag
+};
+
+2. ProRole (6 types)
+export type ProRole =
+  | "doctor"
+  | "nurse"
+  | "pa"              // Physician Assistant
+  | "nutritionist"
+  | "dietitian"
+  | "trainer";
+
+3. Targets (Macro + Directives)
+export type Targets = {
+  kcal: number;         // Total daily calories
+  protein: number;      // Protein grams
+  carbs: number;        // Carb grams
+  fat: number;          // Fat grams
+  
+  flags?: {
+    // MEDICAL FLAGS (for clinical professionals)
+    lowSodium?: boolean;
+    diabetesFriendly?: boolean;
+    glp1?: boolean;
+    cardiac?: boolean;
+    renal?: boolean;
+    postBariatric?: boolean;
+    
+    // PERFORMANCE FLAGS (for trainers)
+    highProtein?: boolean;
+    carbCycling?: boolean;
+    antiInflammatory?: boolean;
+  };
+  
+  allergens?: string[];  // List of allergens to avoid
+  
+  carbDirective?: {      // Trainer-only advanced carb control
+    starchyCapG?: number | null;      // Max starchy carbs (e.g., 25g)
+    fibrousFloorG?: number | null;    // Min fibrous veggies (e.g., 300g)
+    addedSugarCapG?: number | null;   // Max added sugar (e.g., 25g)
+  };
+};
+
+4. ClinicalContext (Role-Specific Notes)
+export type ClinicalContext = {
+  role: ProRole;        // Inherited from client or default "trainer"
+  diagnosis?: string;   // Medical diagnosis
+  clinicalTags?: (
+    | "GLP-1" | "Cardiac" | "Renal" | "Bariatric" 
+    | "Post-Op" | "Diabetes" | "General"
+  )[];
+  followupWeeks?: 4 | 8 | 12;  // Follow-up scheduling
+  patientNote?: string;         // Clinical notes (doctors/nurses)
+  coachNote?: string;           // Training notes (trainers)
+};
+
+5. Prefs (Client Preferences)
+export type Prefs = {
+  dislikes: string[];      // Foods client dislikes
+  allergens: string[];     // Allergens to avoid
+  cuisines: string[];      // Preferred cuisines
+  effort: 'low' | 'standard' | 'high';   // Cooking effort level
+  budget: 'low' | 'med' | 'high';        // Budget tier
+};
+
+6. PlanItem (Meal Plan Entry)
+export type PlanItem = {
+  day: number;         // 1-7 (Monday-Sunday)
+  slot: Slot;          // 'breakfast' | 'lunch' | 'dinner' | 'snack'
+  label: string;       // Meal name
+  kcal: number;        // Calories
+  p: number;           // Protein
+  c: number;           // Carbs
+  f: number;           // Fat
+};
+
+💾 Data Storage (proData.ts)
+All data is stored in localStorage under mpm_prostore_v2
+
+type ProStoreState = {
+  clients: ClientProfile[];                    // All clients
+  targets: Record<string, Targets>;            // clientId → Targets
+  prefs: Record<string, Prefs>;                // clientId → Preferences
+  plans: Record<string, PlanItem[]>;           // clientId → 7-day meal plan
+  context: Record<string, ClinicalContext>;    // clientId → Clinical notes
+  followups: FollowUp[];                       // All scheduled follow-ups
+};
+
+🔧 Key Functions in proData.ts
+Client Management
+proStore.listClients()                    // Get all clients
+proStore.getClient(id)                    // Get single client
+proStore.saveClients(list)                // Save client list
+proStore.archiveClient(id)                // Soft delete
+proStore.restoreClient(id)                // Unarchive
+proStore.deleteClient(id)                 // Permanent delete
+
+Targets Management
+proStore.getTargets(clientId)             // Get macro targets (defaults if none)
+proStore.setTargets(clientId, targets)    // Save macro targets
+
+Meal Plan Generation
+generatePlan7d(clientId)                  // Auto-generate 7-day plan from recipe bank
+
+How it works:
+
+Gets client's targets and preferences
+Filters recipe bank by medical/performance tags
+Removes disliked/allergen foods
+Distributes calories across 4 slots (breakfast 25%, lunch 35%, dinner 30%, snack 10%)
+Scales macros to match targets
+Returns 28 meals (7 days × 4 slots)
+Recipe Bank Filtering
+const RECIPE_BANK: BankItem[] = [
+  { 
+    slot:'breakfast', 
+    label:'Greek Yogurt, Berries, Chia', 
+    kcal:320, p:28, c:32, f:8,  
+    tags:['diabetes_friendly','glp1_support'] 
+  },
+  // ... 20+ recipes
+];
+
+Tags:
+
+low_sodium - For cardiac/renal clients
+diabetes_friendly - For diabetic clients
+glp1_support - For GLP-1 medication users
+🎨 User Interface Flow
+1. ProPortal Landing Page (ProPortal.tsx)
+Currently shows "Coming Soon" notice
+3 placeholder cards: Client Dashboard, Add Meals, Edit Plan
+Back to Dashboard button
+2. Pro Clients Page (pro/ProClients.tsx)
+Route: /pro/clients
+
+Features:
+
+Add new client form (Name, Email, Role selector)
+Client list cards (active/archived toggle)
+Archive/Restore/Delete actions
+"Open" button → navigates to client dashboard
+Key UI:
+
+// Role selector dropdown
+<Select value={role} onValueChange={(v) => setRole(v as ProRole)}>
+  <SelectItem value="trainer">Trainer / Coach</SelectItem>
+  <SelectItem value="doctor">Doctor / Physician</SelectItem>
+  <SelectItem value="nurse">Nurse</SelectItem>
+  <SelectItem value="pa">Physician Assistant</SelectItem>
+  <SelectItem value="nutritionist">Nutritionist</SelectItem>
+  <SelectItem value="dietitian">Dietitian</SelectItem>
+</Select>
+
+3. Client Dashboard (pro/ProClientDashboard.tsx)
+Route: /pro/clients/:id
+
+Sections:
+
+A. Macro Targets (shown to all roles)
+4 input fields: Calories, Protein, Carbs, Fat
+Dietary directive checkboxes (role-specific):
+Clinicians see: Diabetes-Friendly, Low-Sodium, GLP-1 Support, Cardiac, Renal, Post-Bariatric
+Trainers see: High-Protein Focus, Carb Cycling, Anti-Inflammatory
+B. Carb Directive (trainers only)
+Starchy Cap (g/day)
+Fibrous Floor (g/day)
+Added Sugar Cap (g/day)
+C. Clinical Notes (clinicians only)
+Diagnosis field
+Clinical tags (quick-select pills)
+Patient notes
+Follow-up scheduler (4/8/12 weeks)
+D. Coaching Notes (trainers only)
+Coach note textarea
+Performance-focused language
+🔐 Role-Based Features
+Feature	Trainers	Doctors/Nurses/PAs	Dietitians/Nutritionists
+Macro Targets	✅	✅	✅
+Performance Flags	✅	❌	❌
+Medical Flags	❌	✅	✅
+Carb Directive	✅	❌	❌
+Clinical Tags	❌	✅	✅
+Follow-up Scheduling	❌	✅	✅
+🚀 How to Implement in New Project
+Step 1: Copy Core Files
+# Copy these 3 files:
+client/src/lib/proData.ts
+client/src/pages/pro/ProClients.tsx
+client/src/pages/pro/ProClientDashboard.tsx
+
+Step 2: Add Routes
+// In Router.tsx
+import ProClients from "@/pages/pro/ProClients";
+import ProClientDashboard from "@/pages/pro/ProClientDashboard";
+<Route path="/pro/clients" component={ProClients} />
+<Route path="/pro/clients/:id" component={ProClientDashboard} />
+
+Step 3: Install Dependencies
+# If using shadcn/ui
+npx shadcn@latest add select input textarea card button
+
+Step 4: Add Navigation Link
+// In your main dashboard or menu
+<Link href="/pro/clients">
+  <button>Pro Portal</button>
+</Link>
+
+💡 Key Design Patterns
+1. localStorage-Based State
+No database required for alpha/beta
+All data syncs automatically via saveState()
+Easy to migrate to API later
+2. Role Inheritance
+// Role priority: Client.role > Context.role > Default "trainer"
+const role = (client?.role ?? ctx.role ?? "trainer") as ProRole;
+
+3. Conditional UI Rendering
+// Show different sections based on role
+{isTrainer && <CarbDirectiveCard />}
+{isClinician && <ClinicalContextCard />}
+
+4. Recipe Bank Filtering
+Filters by tags (medical/performance)
+Removes allergens/dislikes
+Scales macros to target calories
+Rotates meals across 7 days
+💝 Craving Creator - Quick Overview
+What It Does
+Converts unhealthy cravings into healthy meal alternatives using AI while matching macros and honoring user preferences.
+
+Key Flow
+User inputs craving: "I want pizza"
+AI generates healthy replacement: "Cauliflower crust pizza with turkey pepperoni"
+User selects serving size
+Adds to weekly meal plan OR logs to macro tracker
+Core Files (User already has these)
+client/src/pages/craving-creator.tsx - Main UI
+client/src/pages/craving-presets.tsx - Pre-made swaps
+server/routes/mealRoutes.ts - API endpoint /api/meals/craving-creator
+Key Differentiator
+Emotion-based meal replacement
+Medical badge system (shows why meal is safe)
+Image generation for visual appeal
+Replacement context tracking (knows if replacing existing meal)
+Give this entire guide to your new agent and they'll be able to replicate both the ProCare system and understand how Craving Creator integrates! 🚀

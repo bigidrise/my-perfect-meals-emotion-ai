@@ -14,13 +14,7 @@ client/dist/
 node_modules/
 *.mp4
 *.mov
-*.webp
-*.png
-*.jpg
-*.jpeg
 *.zip
 *.mp3
-attached_assets/
 
-.git.corrupted.backup
 .git.corrupted.backup
