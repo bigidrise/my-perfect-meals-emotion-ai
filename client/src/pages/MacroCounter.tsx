@@ -1,6 +1,7 @@
 // client/src/pages/MacroCounter.tsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation } from "wouter";
+import { motion } from "framer-motion";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -155,7 +156,12 @@ export default function MacroCounter() {
   }, [sex, kg, cm, age, activity, goal, proteinPerKg, fatPct, bodyType]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 text-white px-4 pt-8 pb-32">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 text-white px-4 pt-8 pb-32"
+    >
       <div className="max-w-5xl mx-auto space-y-6">
         <h1 className="text-3xl font-bold text-center">Macro Calculator</h1>
         <p className="text-center text-white/80">
@@ -335,7 +341,7 @@ export default function MacroCounter() {
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

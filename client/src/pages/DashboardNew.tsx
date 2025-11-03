@@ -1,6 +1,7 @@
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Calculator,
@@ -104,7 +105,12 @@ export default function DashboardNew() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#2b2b2b] pb-20 flex flex-col">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#2b2b2b] pb-20 flex flex-col"
+    >
       {/* Fixed Profile Avatar - Top Right */}
       <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50">
         <ProfileSheet>
@@ -149,6 +155,6 @@ export default function DashboardNew() {
         </div>
       </div>
 
-    </div>
+    </motion.div>
   );
 }

@@ -7,6 +7,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "wouter";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -755,7 +756,12 @@ export default function MyBiometrics() {
 
   // ============================== UI ==============================
   return (
-    <div className="min-h-screen text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 md:p-6">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 md:p-6"
+    >
       {/* Nav */}
       <div className="fixed top-4 left-4 z-50">
         <Button onClick={()=>setLocation("/dashboard")} className="bg-black/10 backdrop-blur-none border border-white/20 rounded-2xl hover:bg-black/30 text-white" data-testid="button-back-dashboard"> <Home className="h-4 w-4 mr-1"/> </Button>
@@ -1211,7 +1217,7 @@ export default function MyBiometrics() {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 }
 
