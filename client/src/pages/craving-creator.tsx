@@ -11,6 +11,7 @@
 // DO NOT MODIFY WITHOUT USER APPROVAL
 
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -415,7 +416,12 @@ export default function CravingCreator() {
 
   return (
     <PhaseGate phase="PHASE_1_CORE" feature="craving-creator">
-      <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4"
+      >
         {/* Hub button moved outside container with ultra-high z-index */}
       <GlassButton
         onClick={() => setLocation("/craving-hub")}
@@ -949,7 +955,7 @@ export default function CravingCreator() {
           source="Craving Creator"
         />
       )}
-    </div>
+    </motion.div>
     </PhaseGate>
   );
 }

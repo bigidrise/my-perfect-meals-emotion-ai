@@ -3,6 +3,7 @@
 // Zero-tolerance policy for modifications - system working perfectly for production deployment
 
 import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -129,7 +130,12 @@ export default function CravingPresetsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4"
+    >
       {/* Fixed Back to Meal Hub Button */}
       <Button
         variant="ghost"
@@ -463,6 +469,6 @@ export default function CravingPresetsPage() {
         })}
         source="Craving Presets"
       />
-    </div>
+    </motion.div>
   );
 }

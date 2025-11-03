@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,7 +14,12 @@ export default function CravingHub() {
   const [, setLocation] = useLocation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 sm:p-6">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 sm:p-6"
+    >
       <Button
         variant="ghost"
         onClick={() => setLocation("/dashboard")}
@@ -80,6 +86,6 @@ export default function CravingHub() {
           </Card>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
