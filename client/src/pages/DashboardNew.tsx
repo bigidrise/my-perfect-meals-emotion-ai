@@ -60,7 +60,7 @@ export default function DashboardNew() {
       title: "Master Shopping List",
       description: "Organize your groceries",
       icon: ShoppingCart,
-      route: "/shopping-list",
+      route: "/shopping-list-v2",
       gradient: "",
       testId: "card-shopping-list",
     },
