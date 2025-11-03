@@ -448,7 +448,7 @@ export default function CravingCreator() {
         </div>
 
         <div className="text-center mb-8 bg-black/20 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-lg">
-          <h1 className="text-xl font-bold text-white mb-2">
+          <h1 className="text-2xl font-bold text-white mb-2">
             {replaceId
               ? `Replace: ${replaceName || "Meal"}`
               : "Craving Creator"}
