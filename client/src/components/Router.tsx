@@ -92,7 +92,7 @@ export default function Router() {
     return <DashboardNew />;
   }
 
-  // Pages where BottomNav should NOT appear (pre-login/onboarding pages)
+  // Pages where BottomNav should NOT appear (pre-login/onboarding pages + shopping list generators)
   const hideBottomNavRoutes = [
     '/',
     '/auth',
@@ -104,9 +104,13 @@ export default function Router() {
     '/onboarding-legacy',
     '/pricing',
     '/checkout/success',
+    '/weekly-meal-board',
+    '/weekly',
+    '/athlete-board',
   ];
 
-  const shouldShowBottomNav = !hideBottomNavRoutes.includes(location);
+  // Check for dynamic routes (e.g., /pro/clients/:id/athlete-board)
+  const shouldShowBottomNav = !hideBottomNavRoutes.includes(location) && !location.includes('/athlete-board');
 
   // The rest of the original routes are kept below.
 
