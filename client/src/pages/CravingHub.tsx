@@ -32,7 +32,7 @@ export default function CravingHub() {
       <div className="max-w-5xl mx-auto pt-20">
         <div className="text-center mb-8">
           <div className="inline-block rounded-2xl px-6 py-5 bg-black/30 border border-white/20 backdrop-blur-sm shadow-xl">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-1">
+            <h1 className="text-2xl sm:text-2xl font-extrabold text-white mb-1">
               Craving Creator Hub
             </h1>
             <p className="text-sm sm:text-base text-white/80">

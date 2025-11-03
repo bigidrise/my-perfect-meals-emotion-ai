@@ -150,10 +150,10 @@ export default function CravingPresetsPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-block rounded-2xl px-6 py-5 bg-black/20 border border-white/10 backdrop-blur-sm shadow-xl">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-white mb-2">
               Healthy Premade Cravings
             </h1>
-            <p className="text-white/80 text-sm sm:text-base">
+            <p className="text-white/80 text-xs sm:text-sm">
               20 smarter recipes that satisfy what you're craving — scaled from
               1-10 servings
             </p>
