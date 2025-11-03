@@ -111,7 +111,7 @@ export default function BodyCompositionPro() {
   return (
     <div
       className="min-h-screen p-4 md:p-6 text-white
-      bg-gradient-to-br from-black/70 via-teal-600 to-black/80"
+      bg-gradient-to-br from-black/60 via-orange-600 to-black/80"
     >
       <div className="fixed top-4 left-4 z-50">
         <Button
