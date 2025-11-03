@@ -140,7 +140,7 @@ export default function DashboardNew() {
                   <CardContent className="p-4 md:p-6">
                     <div className="flex flex-col items-center text-center space-y-2">
                       <Icon className="h-8 w-8 md:h-10 md:w-10 text-white" />
-                      <h3 className="text-base md:text-lg font-semibold text-white">
+                      <h3 className="text-base md:text-md font-semibold text-white">
                         {feature.title}
                       </h3>
                       <p className="text-xs md:text-sm text-white/90 leading-snug">

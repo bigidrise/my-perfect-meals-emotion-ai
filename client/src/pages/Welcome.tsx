@@ -181,12 +181,12 @@ export default function Welcome() {
         </div>
 
         {/* Business Name */}
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-3">
+        <h1 className="text-3xl md:text-2xl font-semi-bold text-center mb-3">
           My Perfect Meals
         </h1>
 
         {/* Value Proposition */}
-        <p className="text-lg md:text-xl text-white/80 text-center mb-12 max-w-md">
+        <p className="text-sm md:text-xl text-white/80 text-center mb-12 max-w-md">
           Healthy Meal Planning Powered by Emotion AI
         </p>
 
@@ -195,7 +195,7 @@ export default function Welcome() {
           <Button
             data-testid="button-signin"
             onClick={signIn}
-            className="w-full h-14 text-lg font-semibold rounded-xl
+            className="w-full h-14 text-md font-medium rounded-2xl
                      bg-white/10 hover:bg-white/20 backdrop-blur-md
                      border border-white/20 text-white
                      transition-all duration-200"
@@ -206,7 +206,7 @@ export default function Welcome() {
           <Button
             data-testid="button-createaccount"
             onClick={createAccount}
-            className="w-full h-14 text-lg font-semibold rounded-xl
+            className="w-full h-14 text-md font-medium rounded-2xl
                      bg-black/60 via-orange-600 to-black/80 hover:bg-orange-500
                      text-white shadow-lg
                      transition-all duration-200"
