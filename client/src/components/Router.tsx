@@ -52,6 +52,7 @@ import {
 import TutorialHub from "@/pages/TutorialHub";
 import MyBiometrics from "@/pages/my-biometrics";
 import BodyComposition from "@/pages/biometrics/body-composition";
+import Sleep from "@/pages/biometrics/sleep";
 import GetInspiration from "@/pages/GetInspiration";
 
 // DELETED: All non-MVP pages (hubs, specialty features, etc.)
@@ -166,7 +167,7 @@ export default function Router() {
         {/* Biometric sub-pages */}
         <Route path="/biometrics" component={MyBiometrics} />
         <Route path="/biometrics/body-composition" component={BodyComposition} />
-        {/* TODO: Add SleepInsights route when page is provided */}
+        <Route path="/biometrics/sleep" component={Sleep} />
 
         {/* ✅ NEW: Unified Food Logging Routes */}
         {/* <Route path="/food" component={FoodLogToday} /> */} {/* TEMPORARILY DISABLED - File missing */}
