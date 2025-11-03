@@ -18,6 +18,7 @@ import {
   LogOut,
   ChevronRight,
   MessageCircle,
+  Video,
 } from "lucide-react";
 import { logout } from "@/lib/auth";
 import { useAuth } from "@/contexts/AuthContext";
@@ -73,6 +74,13 @@ export function ProfileSheet({ children }: ProfileSheetProps) {
       icon: Shield,
       route: "/privacy",
       testId: "menu-privacy",
+    },
+    {
+      title: "Tutorial Hub",
+      description: "Nutrition guides & how-to videos",
+      icon: Video,
+      route: "/learn",
+      testId: "menu-tutorials",
     },
     {
       title: "About My Perfect Meals",
