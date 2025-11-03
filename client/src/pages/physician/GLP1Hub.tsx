@@ -74,7 +74,7 @@ export default function GLP1Hub() {
   }, [data, view]);
 
   return (
-    <div className="min-h-screen p-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen p-4 pb-32 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Back (uses hub path) */}
       <button
         type="button"
