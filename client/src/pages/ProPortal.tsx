@@ -1,101 +1,157 @@
-import { useState, useEffect } from "react";
+// client/src/pages/pro/ProClients.tsx
+import { useState } from "react";
 import { useLocation } from "wouter";
-import { Home, ClipboardEdit, Users } from "lucide-react";
-import { GlassCard, GlassCardContent } from "@/components/glass/GlassCard";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { proStore, ClientProfile, ProRole } from "@/lib/proData";
+import { Plus, User2, ArrowRight, ArrowLeft, Archive, RotateCcw } from "lucide-react";
+import TrashButton from "@/components/ui/TrashButton";
 
-export default function ProPortal() {
+export default function ProClients(){
   const [, setLocation] = useLocation();
+  const [clients, setClients] = useState<ClientProfile[]>(() => proStore.listClients());
+  const [showArchived, setShowArchived] = useState(false);
+  const [name,setName] = useState(""); 
+  const [email,setEmail]=useState("");
+  const [role, setRole] = useState<ProRole>("trainer");
+
+  const add = () => {
+    if (!name.trim()) return;
+    const c: ClientProfile = { id: crypto.randomUUID(), name: name.trim(), email: email.trim() || undefined, role };
+    const next = [c, ...clients]; setClients(next); proStore.saveClients(next);
+    setName(""); setEmail(""); setRole("trainer");
+  };
+
+  const archiveClient = (id: string) => {
+    proStore.archiveClient(id);
+    setClients([...proStore.listClients()]);
+  };
+
+  const restoreClient = (id: string) => {
+    proStore.restoreClient(id);
+    setClients([...proStore.listClients()]);
+  };
+
+  const deleteClient = (id: string, name: string) => {
+    proStore.deleteClient(id);
+    setClients([...proStore.listClients()]);
+  };
+
+  const go = (id:string)=> setLocation(`/pro/clients/${id}`);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 sm:p-6">
-      {/* Back to Dashboard */}
-      <button
-        onClick={() => setLocation("/dashboard")}
-        className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 bg-black/10 backdrop-blur-none border border-white/20 hover:bg-black/20 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-xl shadow-lg flex items-center gap-2 font-semibold text-sm sm:text-base transition-all"
-      >
-        <Home className="h-4 w-4" />
-        Dashboard
-      </button>
+    <div className="min-h-screen p-4 text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80">
+      <div className="max-w-5xl mx-auto space-y-6 pt-2">
+        <button
+          onClick={() => setLocation("/care-team")}
+          className="mb-4 w-12 h-12 rounded-2xl bg-black/10 hover:bg-black/20 active:bg-black/20 flex items-center justify-center transition-colors shrink-0 overflow-hidden"
 
-      <div className="max-w-6xl mx-auto pt-14 sm:pt-16 space-y-6">
-        {/* Header */}
-        <GlassCard>
-          <GlassCardContent className="p-6">
-            <div className="flex items-center gap-3">
-              <ClipboardEdit className="h-6 w-6 text-white/90" />
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
-                  Pro Portal
-                </h1>
-                <p className="text-white/70 text-sm">
-                  Manage your client's meal plans, view their progress, and
-                  collaborate on their health journey.
-                </p>
-              </div>
+        >
+          <ArrowLeft className="h-4 w-4 text-white shrink-0" />
+        </button>
+
+        <div className="rounded-2xl p-6 bg-white/5 border border-white/20 mt-12">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold">👥 Pro Portal — Clients</h1>
+              <p className="text-white mt-1">Add clients and open their dashboards.</p>
             </div>
-          </GlassCardContent>
-        </GlassCard>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <GlassCard
-            className="border-2 border-indigo-500/40 cursor-pointer hover:border-indigo-400/60 transition-all"
-            onClick={() => setLocation("/pro/clients")}
-          >
-            <GlassCardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-indigo-300" />
-                <h2 className="text-xl font-bold text-white">Manage Clients</h2>
-              </div>
-              <p className="text-sm text-white/70">
-                Add and manage clients, set macro targets, and track their
-                progress.
-              </p>
-            </GlassCardContent>
-          </GlassCard>
-
-          <GlassCard className="border-2 border-teal-500/40 cursor-pointer hover:border-teal-400/60 transition-all">
-            <GlassCardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-2">
-                <ClipboardEdit className="h-5 w-5 text-teal-300" />
-                <h2 className="text-xl font-bold text-white">Add Meals</h2>
-              </div>
-              <p className="text-sm text-white/70">
-                Create and assign meals to your client's meal plan based on
-                their preferences.
-              </p>
-            </GlassCardContent>
-          </GlassCard>
-
-          <GlassCard className="border-2 border-emerald-500/40 cursor-pointer hover:border-emerald-400/60 transition-all">
-            <GlassCardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-2">
-                <ClipboardEdit className="h-5 w-5 text-emerald-300" />
-                <h2 className="text-xl font-bold text-white">Edit Plan</h2>
-              </div>
-              <p className="text-sm text-white/70">
-                Modify meal plans, adjust macro targets, and customize dietary
-                preferences.
-              </p>
-            </GlassCardContent>
-          </GlassCard>
+            <Button
+              onClick={() => setShowArchived(!showArchived)}
+              variant="outline"
+              className="bg-white/5 border-white/20 text-white hover:bg-white/10"
+            >
+              {showArchived ? "Show Active" : "Show Archived"}
+            </Button>
+          </div>
         </div>
 
-        {/* Getting Started */}
-        <GlassCard className="border-2 border-purple-500/40">
-          <GlassCardContent className="p-6">
-            <div className="text-center space-y-3">
-              <h3 className="text-xl font-bold text-white">
-                Welcome to Pro Portal
-              </h3>
-              <p className="text-white/70 text-sm max-w-2xl mx-auto">
-                Start by adding clients above, then set their macro targets and
-                dietary directives. You can generate meal plans, track progress,
-                and collaborate on their health journey.
-              </p>
+        <Card className="bg-white/5 border border-white/20">
+          <CardHeader><CardTitle className="text-white">Add Client</CardTitle></CardHeader>
+          <CardContent className="space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Input placeholder="Name" className="bg-black/30 border-white/30 text-white" value={name} onChange={e=>setName(e.target.value)} />
+              <Input placeholder="Email (optional)" className="bg-black/30 border-white/30 text-white" value={email} onChange={e=>setEmail(e.target.value)} />
             </div>
-          </GlassCardContent>
-        </GlassCard>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Select value={role} onValueChange={(v) => setRole(v as ProRole)}>
+                <SelectTrigger className="bg-black/30 border-white/30 text-white">
+                  <SelectValue placeholder="Select role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="trainer">Trainer / Coach</SelectItem>
+                  <SelectItem value="doctor">Doctor / Physician</SelectItem>
+                  <SelectItem value="nurse">Nurse</SelectItem>
+                  <SelectItem value="pa">Physician Assistant</SelectItem>
+                  <SelectItem value="nutritionist">Nutritionist</SelectItem>
+                  <SelectItem value="dietitian">Dietitian</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button onClick={add} className="bg-white/10 border border-white/20 text-white hover:bg-white/20"><Plus className="h-4 w-4 mr-1" />Add Client</Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {clients.filter(c => showArchived ? c.archived : !c.archived).length===0 ? (
+            <div className="text-white">{showArchived ? "No archived clients." : "No active clients yet. Add one above."}</div>
+          ) : clients.filter(c => showArchived ? c.archived : !c.archived).map(c=>(
+            <Card key={c.id} className="bg-white/5 border border-white/20">
+              <CardContent className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center"><User2 className="h-5 w-5 text-white" /></div>
+                  <div>
+                    <div className="font-semibold text-white">{c.name}</div>
+                    {c.email && <div className="text-white text-sm">{c.email}</div>}
+                    {c.role && (
+                      <div className="inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium bg-purple-500/30 text-purple-200 border border-purple-400/30">
+                        {c.role === "doctor" ? "Doctor" : c.role === "nurse" ? "Nurse" : c.role === "pa" ? "PA" : c.role === "nutritionist" ? "Nutritionist" : c.role === "dietitian" ? "Dietitian" : "Trainer"}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  {c.archived ? (
+                    <>
+                      <TrashButton
+                        onClick={() => deleteClient(c.id, c.name)}
+                        size="sm"
+                        confirm
+                        confirmMessage={`Delete ${c.name} permanently? This will remove all data and cannot be undone.`}
+                        ariaLabel={`Permanently delete ${c.name}`}
+                        data-testid={`button-delete-client-${c.id}`}
+                      />
+                      <Button
+                        onClick={() => restoreClient(c.id)}
+                        variant="ghost"
+                        size="icon"
+                        className="text-green-400 hover:text-green-300 hover:bg-green-500/10"
+                        data-testid={`button-restore-client-${c.id}`}
+                      >
+                        <RotateCcw className="h-4 w-4" />
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      onClick={() => archiveClient(c.id)}
+                      variant="ghost"
+                      size="icon"
+                      className="text-orange-400 hover:text-orange-300 hover:bg-orange-500/10"
+                      data-testid={`button-archive-client-${c.id}`}
+                    >
+                      <Archive className="h-4 w-4" />
+                    </Button>
+                  )}
+                  <Button onClick={()=>go(c.id)} className="bg-purple-600 hover:bg-purple-700 text-white">
+                    Open <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
