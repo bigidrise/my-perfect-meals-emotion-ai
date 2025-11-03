@@ -51,8 +51,8 @@ export default function DiabetesSupportPage() {
           onClick={() => setLocation("/diabetic")}
           className="flex items-center gap-2 text-white bg-black/20 backdrop-blur-sm border border-white/30 hover:bg-black/30 transition-all duration-200 font-medium rounded-xl shadow-2xl"
         >
-          <Home className="h-4 w-4 text-white" />
-          Diabetic Hub
+          <ArrowLeft className="h-4 w-4 text-white" />
+          
         </Button>
       </div>
 
