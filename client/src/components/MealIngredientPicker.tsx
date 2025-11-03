@@ -185,12 +185,12 @@ export default function MealIngredientPicker({
               {INGREDIENTS[activeCategory].map((ingredient) => (
                 <label
                   key={ingredient}
-                  className="flex flex-col items-center gap-0.5 text-white/90 hover:text-white cursor-pointer group"
+                  className="flex flex-col items-center gap-0.5 text-white/90 hover:text-white cursor-pointer group p-1 min-h-[44px]"
                 >
                   <Checkbox
                     checked={selectedIngredients.includes(ingredient)}
                     onCheckedChange={() => toggleIngredient(ingredient)}
-                    className="h-3 w-3 border-white/30 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-500"
+                    className="h-1.5 w-1.5 border-white/30 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-500"
                   />
                   <span className="text-[11px] group-hover:text-emerald-300 transition-colors text-center">
                     {ingredient}
