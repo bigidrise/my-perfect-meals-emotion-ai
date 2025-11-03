@@ -186,9 +186,19 @@ export default function Welcome() {
         </h1>
 
         {/* Value Proposition */}
-        <p className="text-sm md:text-xl text-white/80 text-center mb-12 max-w-md">
-          Healthy Meal Planning Powered by Emotion AI
+        <p className="text-sm md:text-xl text-white/80 text-center mb-6 max-w-md">
+          Healthy Meal Planning
         </p>
+
+        {/* Emotion AI Badge - Styled to be visible */}
+        <div className="mb-12 flex justify-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600 to-orange-500 rounded-full border border-orange-400/50 shadow-lg">
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+            <span className="text-white font-semibold text-sm">
+              Powered by Emotion AI
+            </span>
+          </div>
+        </div>
 
         {/* Buttons */}
         <div className="w-full max-w-sm space-y-4">
