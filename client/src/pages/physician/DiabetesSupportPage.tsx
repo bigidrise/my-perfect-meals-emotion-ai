@@ -48,7 +48,7 @@ export default function DiabetesSupportPage() {
         }}
       >
         <Button
-          onClick={() => setLocation("/diabetic")}
+          onClick={() => setLocation("/diabetic-hub")}
           className="flex items-center gap-2 text-white bg-black/20 backdrop-blur-sm border border-white/30 hover:bg-black/30 transition-all duration-200 font-medium rounded-xl shadow-2xl"
         >
           <ArrowLeft className="h-4 w-4 text-white" />
@@ -68,11 +68,10 @@ export default function DiabetesSupportPage() {
           {/* Inner glass shimmer effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
-            🩺 Diabetes Support Center
+            📊 Blood Sugar Tracker
           </h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto relative z-10">
-            Track your blood glucose, set targets, and get personalized meal
-            recommendations
+            Log your blood sugar readings, view trends over time, and learn how to manage your glucose levels
           </p>
         </div>
 
