@@ -52,13 +52,21 @@ export default function ProClients(){
       <div className="max-w-5xl mx-auto space-y-6 pt-2">
         <button
           onClick={() => setLocation("/care-team")}
-          className="mb-4 w-12 h-12 rounded-2xl bg-black/10 hover:bg-black/20 active:bg-black/20 flex items-center justify-center transition-colors shrink-0 overflow-hidden"
-
+          className="
+            fixed top-2 z-50
+            left-4
+            sm:left-[calc((100vw-64rem)/2+1rem)]
+            w-12 h-12 rounded-2xl
+            bg-black/10 hover:bg-black/20 active:bg-black/20
+            flex items-center justify-center transition-colors overflow-hidden
+          "
         >
-          <ArrowLeft className="h-4 w-4 text-white shrink-0" />
+          <ArrowLeft className="h-4 w-4 text-white" />
         </button>
 
-        <div className="rounded-2xl p-6 bg-white/5 border border-white/20 mt-8">
+
+
+        <div className="rounded-2xl p-6 bg-white/5 border border-white/20 mt-4">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold">👥 Pro Portal — Clients</h1>

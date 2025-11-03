@@ -150,14 +150,14 @@ export default function ProClientDashboard() {
     >
       {/* Back Button */}
       <button
-        onClick={() => setLocation("/pro/clients")}
+        onClick={() => setLocation("/care-team")}
         className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 bg-black/10 backdrop-blur-none border border-white/20 hover:bg-black/20 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-2xl shadow-lg flex items-center gap-2 font-semibold text-sm sm:text-base transition-all"
       >
         <ArrowLeft className="h-4 w-4" />
       </button>
 
       <div className="max-w-5xl mx-auto space-y-6 pt-14 sm:pt-16 pb-16">
-        <div className="rounded-2xl p-6 bg-white/5 border border-white/20 mt-8">
+        <div className="rounded-2xl p-6 bg-white/5 border border-white/20 mt-2">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <p className="text-white/70 mt-1">
             {isTrainer &&
