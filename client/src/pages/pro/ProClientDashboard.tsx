@@ -156,7 +156,7 @@ export default function ProClientDashboard() {
         <ArrowLeft className="h-4 w-4" />
       </button>
 
-      <div className="max-w-5xl mx-auto space-y-6 pt-14 sm:pt-16 pb-32">
+      <div className="max-w-5xl mx-auto space-y-6 pt-14 sm:pt-16 pb-16">
         <div className="rounded-2xl p-6 bg-white/5 border border-white/20 mt-8">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <p className="text-white/70 mt-1">

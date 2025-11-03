@@ -47,7 +47,7 @@ export default function ProClients(){
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen p-4 text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80"
+      className="min-h-screen p-6 text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80"
     >
       <div className="max-w-5xl mx-auto space-y-6 pt-2">
         <button
