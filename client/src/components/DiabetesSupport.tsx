@@ -125,7 +125,7 @@ export function DiabetesSupport() {
           {/* Inner glass shimmer effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
           <h1 className="text-4xl font-bold text-white relative z-10">
-            Diabetes Support Center
+            Blood Sugar Tracker
           </h1>
           <p className="text-white/90 mt-2 relative z-10">
             Advanced glucose monitoring and meal planning for optimal health management

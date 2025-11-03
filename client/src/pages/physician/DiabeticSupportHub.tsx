@@ -76,20 +76,20 @@ export default function DiabeticSupportHub() {
                   <Activity className="h-6 w-6" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold text-white">Carb Control Center</h2>
-                  <p className="text-white/80 text-sm">Learn smarter carb choices for steadier blood sugar</p>
+                  <h2 className="text-2xl font-semibold text-white">Blood Sugar Tracker</h2>
+                  <p className="text-white/80 text-sm">Log blood sugar, view history, and get educational insights</p>
                 </div>
               </div>
 
               <p className="text-white/90 mb-6">
-                Understand how different types of carbohydrates affect blood sugar, why glycemic index and load matter, and how your meal timing and pairings support your doctor’s plan.
+                Track your daily blood sugar readings, view trends over time, and learn how different factors affect your glucose levels. Keep a complete history to share with your healthcare provider.
               </p>
 
               <button
                 onClick={() => setLocation("/diabetes-support")}
                 className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                Open Control Center
+                Open Tracker
               </button>
             </section>
 
