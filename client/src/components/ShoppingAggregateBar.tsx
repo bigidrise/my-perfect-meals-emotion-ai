@@ -88,7 +88,7 @@ export default function ShoppingAggregateBar({ ingredients, source, sourceSlug }
   if (ingredients.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 bg-gradient-to-r from-zinc-900/95 via-zinc-800/95 to-black/95 backdrop-blur-xl border-t border-white/20 shadow-2xl safe-area-inset-bottom">
+    <div className="fixed bottom-0 left-0 right-0 z-80 bg-gradient-to-r from-zinc-900/95 via-zinc-800/95 to-black/95 backdrop-blur-xl border-t border-white/20 shadow-2xl safe-area-inset-bottom">
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
           <div className="flex-1 text-white">
