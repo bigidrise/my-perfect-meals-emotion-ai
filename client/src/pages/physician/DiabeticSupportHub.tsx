@@ -33,14 +33,7 @@ export default function DiabeticSupportHub() {
         style={{ zIndex: 2147483647, isolation: "isolate", transform: "translateZ(0)", willChange: "transform" }}
       >
         <Button
-          onClick={() => {
-            const clientId = localStorage.getItem("pro-client-id");
-            if (clientId) {
-              setLocation(`/pro/clients/${clientId}/dashboard`);
-            } else {
-              setLocation("/dashboard");
-            }
-          }}
+          onClick={() => setLocation("/dashboard")}
           className="flex items-center gap-2 text-white bg-black/20 backdrop-blur-none border border-white/30 hover:bg-black/40 transition-all duration-200 font-medium rounded-xl shadow-2xl"
         >
           <ArrowLeft className="h-4 w-4 text-white" />

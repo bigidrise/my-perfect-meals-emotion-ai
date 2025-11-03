@@ -563,18 +563,11 @@ export default function MedicalDietHub() {
 
   return (
     <div className={`min-h-screen ${ui.pageBg} p-6`}>
-      {/* Back to Client Dashboard */}
+      {/* Back to Dashboard */}
       <button
-        onClick={() => {
-          const clientId = localStorage.getItem("pro-client-id");
-          if (clientId) {
-            setLocation(`/pro/clients/${clientId}/dashboard`);
-          } else {
-            setLocation("/dashboard");
-          }
-        }}
+        onClick={() => setLocation("/dashboard")}
         className="fixed top-4 left-4 z-[9999] isolate overflow-hidden rounded-2xl px-3 py-2 bg-white/10 backdrop-blur-none border border-white/30 text-white shadow-lg hover:bg-white/20 transition flex items-center gap-2"
-        title="Client Dashboard"
+        title="Back to Dashboard"
       >
         <ArrowLeft className="w-5 h-5" />
         <span className="text-sm font-medium"></span>

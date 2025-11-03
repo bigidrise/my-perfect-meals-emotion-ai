@@ -78,15 +78,8 @@ export default function GLP1Hub() {
       {/* Back (uses hub path) */}
       <button
         type="button"
-        onClick={() => {
-          const clientId = localStorage.getItem("pro-client-id");
-          if (clientId) {
-            setLocation(`/pro/clients/${clientId}/dashboard`);
-          } else {
-            setLocation("/dashboard");
-          }
-        }}
-        aria-label="Back to Client Dashboard"
+        onClick={() => setLocation("/dashboard")}
+        aria-label="Back to Dashboard"
         className="fixed top-4 left-4 z-[9999] bg-black/10 border border-white/20 text-white hover:bg-black/20 rounded-2xl px-3 py-2 flex items-center gap-2"
       >
         <ArrowLeft className="w-5 h-5" />
