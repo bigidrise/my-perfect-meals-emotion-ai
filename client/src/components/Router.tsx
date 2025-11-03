@@ -76,6 +76,8 @@ import AthleteBoard from "@/pages/pro/AthleteBoard";
 import DiabeticSupportHub from "@/pages/physician/DiabeticSupportHub";
 import DiabetesSupportPage from "@/pages/physician/DiabetesSupportPage";
 import DiabeticMenuBuilder from "@/pages/physician/DiabeticMenuBuilder";
+import GLP1Hub from "@/pages/physician/GLP1Hub";
+import GLP1MealBuilder from "@/pages/physician/GLP1MealBuilder";
 
 // Craving pages
 import CravingHub from "@/pages/CravingHub";
@@ -241,6 +243,8 @@ export default function Router() {
         <Route path="/diabetic-hub" component={DiabeticSupportHub} />
         <Route path="/diabetes-support" component={DiabetesSupportPage} />
         <Route path="/diabetic-menu-builder" component={DiabeticMenuBuilder} />
+        <Route path="/glp1-hub" component={GLP1Hub} />
+        <Route path="/glp1-meal-builder" component={GLP1MealBuilder} />
 
         {/* Craving Creator Routes */}
         <Route path="/craving-hub" component={CravingHub} />
