@@ -152,7 +152,7 @@ export default function MealIngredientPicker({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] bg-gradient-to-b from-[#0f0f0f] via-[#1a1a1a] to-[#2b2b2b] border border-white/10 p-4 flex flex-col">
+      <DialogContent className="max-w-2xl h-[90vh] sm:h-auto sm:max-h-[80vh] bg-gradient-to-b from-[#0f0f0f] via-[#1a1a1a] to-[#2b2b2b] border border-white/10 p-4 flex flex-col">
         <DialogHeader className="flex-shrink-0">
           <DialogTitle className="text-white flex items-center gap-2 text-xl">
             <ChefHat className="w-6 h-6 text-purple-400" />
@@ -181,7 +181,7 @@ export default function MealIngredientPicker({
         <div className="flex-1 overflow-y-auto mb-3 min-h-0">
           {/* Ingredient Grid - Small Checkboxes */}
           <div className="mb-3">
-            <div className="grid grid-cols-3 gap-x-2 gap-y-1">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-2 gap-y-1">
               {INGREDIENTS[activeCategory].map((ingredient) => (
                 <label
                   key={ingredient}
