@@ -1,5 +1,5 @@
 import { useLocation } from "wouter";
-import { ArrowLeft, Award } from "lucide-react";
+import { ArrowLeft, Award, Home } from "lucide-react";
 
 type Founder = {
   id: string;
@@ -9,9 +9,19 @@ type Founder = {
 };
 
 const FOUNDERS: Founder[] = [
-  { id: "1", name: "Coach Idrise", img: "/assets/founder-photo.png", badge: "Gold Founder" },
+  {
+    id: "1",
+    name: "Coach Idrise",
+    img: "/assets/founder-photo.png",
+    badge: "Gold Founder",
+  },
   { id: "2", name: "A. Believer", img: "/assets/MPMTransparentLogo.png" },
-  { id: "3", name: "B. Believer", img: "/assets/MPMTransparentLogo.png", badge: "Top Supporter" },
+  {
+    id: "3",
+    name: "B. Believer",
+    img: "/assets/MPMTransparentLogo.png",
+    badge: "Top Supporter",
+  },
   { id: "4", name: "C. Believer", img: "/assets/MPMTransparentLogo.png" },
 ];
 
@@ -26,10 +36,10 @@ export default function FoundersPage() {
         className="fixed top-4 left-4 z-50 inline-flex items-center gap-2 px-4 h-10 rounded-2xl bg-black/10 hover:bg-black/20 ring-1 ring-white/10 backdrop-blur-none transition"
         data-testid="button-back"
       >
-        <ArrowLeft className="h-5 w-5 stroke-[2.5] text-white" />
-        <span className="text-white font-medium">Dashboard</span>
-      </button> 
-      
+        <Home className="h-5 w-5 stroke-[2.5] text-white" />
+        <span className="text-white font-medium"></span>
+      </button>
+
       <section className="container mx-auto max-w-6xl px-4 md:px-6">
         <div className="mb-8 p-6 rounded-2xl bg-black/50 ring-1 ring-white/10 backdrop-blur-md shadow-2xl text-center">
           <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-white drop-shadow-[0_1px_0_rgba(0,0,0,0.6)]">

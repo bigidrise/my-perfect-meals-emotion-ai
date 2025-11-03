@@ -118,7 +118,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
 
   if (!clientId) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-black flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 flex items-center justify-center">
         <div className="text-white text-center">
           <p>Missing client ID. Redirecting to dashboard...</p>
         </div>

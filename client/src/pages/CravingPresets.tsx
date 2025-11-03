@@ -15,9 +15,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Home, BookOpen, ChevronDown, ChevronUp, Plus, ArrowLeft } from "lucide-react";
+import {
+  Home,
+  BookOpen,
+  ChevronDown,
+  ChevronUp,
+  Plus,
+  ArrowLeft,
+} from "lucide-react";
 import { useLocation } from "wouter";
-import { CRAVING_PRESETS, type CravingPreset, type Ingredient } from "@/data/cravingsPresetsData";
+import {
+  CRAVING_PRESETS,
+  type CravingPreset,
+  type Ingredient,
+} from "@/data/cravingsPresetsData";
 import { prettyAmount } from "@/utils/prettyUnits";
 import { useToast } from "@/hooks/use-toast";
 import { useQueryClient } from "@tanstack/react-query";
@@ -100,9 +111,10 @@ export default function CravingPresetsPage() {
     return CRAVING_PRESETS.filter(
       (preset) =>
         preset.name.toLowerCase().includes(q) ||
-        (preset.badges?.some((badge) => badge.toLowerCase().includes(q)) ?? false) ||
+        (preset.badges?.some((badge) => badge.toLowerCase().includes(q)) ??
+          false) ||
         (preset.tags?.some((tag) => tag.toLowerCase().includes(q)) ?? false) ||
-        preset.summary?.toLowerCase().includes(q)
+        preset.summary?.toLowerCase().includes(q),
     );
   }, [filterText]);
 
@@ -115,7 +127,6 @@ export default function CravingPresetsPage() {
     }
     setExpandedCards(newExpanded);
   };
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4">
@@ -137,7 +148,8 @@ export default function CravingPresetsPage() {
               Healthy Premade Cravings
             </h1>
             <p className="text-white/80 text-sm sm:text-base">
-              20 smarter recipes that satisfy what you're craving — scaled from 1-10 servings
+              20 smarter recipes that satisfy what you're craving — scaled from
+              1-10 servings
             </p>
           </div>
         </div>
@@ -217,7 +229,7 @@ export default function CravingPresetsPage() {
               preset.ingredients,
               preset.baseServings,
               selectedServings,
-              rounding
+              rounding,
             );
 
             // NEW: determine expanded state once so we can style the button accordingly
@@ -241,11 +253,22 @@ export default function CravingPresetsPage() {
                       src={preset.image}
                       alt={preset.name}
                       className="h-40 w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      onLoad={() => console.log("✅ Image loaded:", preset.id, preset.image)}
+                      onLoad={() =>
+                        console.log("✅ Image loaded:", preset.id, preset.image)
+                      }
                       onError={(e) => {
-                        console.log("❌ Image error:", preset.id, preset.image, e);
-                        (e.currentTarget as HTMLImageElement).style.display = 'none';
-                        (e.currentTarget.nextElementSibling as HTMLElement | null)?.removeAttribute('style');
+                        console.log(
+                          "❌ Image error:",
+                          preset.id,
+                          preset.image,
+                          e,
+                        );
+                        (e.currentTarget as HTMLImageElement).style.display =
+                          "none";
+                        (
+                          e.currentTarget
+                            .nextElementSibling as HTMLElement | null
+                        )?.removeAttribute("style");
                       }}
                     />
                   ) : null}
@@ -283,13 +306,16 @@ export default function CravingPresetsPage() {
                     <div className="grid grid-cols-4 gap-2 text-center mb-4">
                       <div>
                         <div className="text-lg font-bold text-orange-300">
-                          {Math.round(preset.macros.calories * selectedServings)}
+                          {Math.round(
+                            preset.macros.calories * selectedServings,
+                          )}
                         </div>
                         <div className="text-xs text-white/70">Calories</div>
                       </div>
                       <div>
                         <div className="text-lg font-bold text-green-300">
-                          {Math.round(preset.macros.protein * selectedServings)}g
+                          {Math.round(preset.macros.protein * selectedServings)}
+                          g
                         </div>
                         <div className="text-xs text-white/70">Protein</div>
                       </div>
@@ -311,22 +337,30 @@ export default function CravingPresetsPage() {
                   {/* Scaled Ingredients */}
                   <div className="space-y-2">
                     <h4 className="text-white/90 font-semibold text-sm flex items-center gap-1">
-                      <span>Ingredients ({selectedServings} serving{selectedServings !== 1 ? "s" : ""})</span>
+                      <span>
+                        Ingredients ({selectedServings} serving
+                        {selectedServings !== 1 ? "s" : ""})
+                      </span>
                     </h4>
                     <div className="bg-slate-800/50 rounded-md p-3 space-y-1 max-h-32 overflow-y-auto">
                       {scaledIngredients.map((ing, index) => {
                         const amount = formatQty(ing.quantity);
                         const unit = pluralize(ing.unit, ing.quantity);
                         const base = `${amount}${unit ? ` ${unit}` : ""}`;
-                        const friendly = unit?.toLowerCase() === "g" 
-                          ? ` (${prettyAmount(ing.quantity, "g", ing.name)})`
-                          : "";
+                        const friendly =
+                          unit?.toLowerCase() === "g"
+                            ? ` (${prettyAmount(ing.quantity, "g", ing.name)})`
+                            : "";
 
                         return (
-                          <div key={index} className="text-white/80 text-xs flex justify-between">
+                          <div
+                            key={index}
+                            className="text-white/80 text-xs flex justify-between"
+                          >
                             <span>{ing.name}</span>
                             <span className="text-orange-300 font-mono">
-                              {base}{friendly}
+                              {base}
+                              {friendly}
                             </span>
                           </div>
                         );
@@ -352,34 +386,46 @@ export default function CravingPresetsPage() {
                         <ChevronDown className="w-3 h-3" />
                       )}
                     </Button>
-                    
+
                     {preset.macros && (
                       <MacroBridgeButton
                         meal={{
-                          protein: Math.round(preset.macros.protein * selectedServings),
-                          carbs: Math.round(preset.macros.carbs * selectedServings),
+                          protein: Math.round(
+                            preset.macros.protein * selectedServings,
+                          ),
+                          carbs: Math.round(
+                            preset.macros.carbs * selectedServings,
+                          ),
                           fat: Math.round(preset.macros.fat * selectedServings),
-                          calories: Math.round(preset.macros.calories * selectedServings),
+                          calories: Math.round(
+                            preset.macros.calories * selectedServings,
+                          ),
                         }}
                         source="craving-presets"
                       />
                     )}
                   </div>
 
-
                   {/* Expanded Instructions Dropdown */}
                   {isOpen && (
                     <div className="mt-4 space-y-3 border-t border-white/20 pt-3">
                       {/* Instructions */}
                       <div>
-                        <h4 className="font-semibold text-white text-sm mb-2">Cooking Instructions</h4>
+                        <h4 className="font-semibold text-white text-sm mb-2">
+                          Cooking Instructions
+                        </h4>
                         <div className="space-y-2">
                           {preset.instructions.map((instruction, idx) => (
-                            <div key={idx} className="flex items-start gap-2 text-xs text-white/90">
+                            <div
+                              key={idx}
+                              className="flex items-start gap-2 text-xs text-white/90"
+                            >
                               <span className="bg-orange-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 mt-0.5">
                                 {idx + 1}
                               </span>
-                              <span className="bg-slate-800/50 p-2 rounded flex-1">{instruction}</span>
+                              <span className="bg-slate-800/50 p-2 rounded flex-1">
+                                {instruction}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -407,7 +453,7 @@ export default function CravingPresetsPage() {
             preset.ingredients,
             preset.baseServings,
             selectedServings,
-            rounding
+            rounding,
           );
           return scaledIngredients.map((ing) => ({
             name: ing.name,

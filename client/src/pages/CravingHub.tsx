@@ -1,11 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { Brain, Sparkles, ArrowLeft, Home } from "lucide-react";
 
 export default function CravingHub() {
   const [, setLocation] = useLocation();
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 sm:p-6">
       <Button
@@ -15,14 +21,18 @@ export default function CravingHub() {
         data-testid="button-back-dashboard"
       >
         <Home className="w-4 h-4" />
-        
       </Button>
 
       <div className="max-w-5xl mx-auto pt-20">
         <div className="text-center mb-8">
           <div className="inline-block rounded-2xl px-6 py-5 bg-black/30 border border-white/20 backdrop-blur-sm shadow-xl">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-1">Craving Creator Hub</h1>
-            <p className="text-sm sm:text-base text-white/80">Pick your path: craft a custom craving or choose a healthy preset with serving scaling.</p>
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-1">
+              Craving Creator Hub
+            </h1>
+            <p className="text-sm sm:text-base text-white/80">
+              Pick your path: craft a custom craving or choose a healthy preset
+              with serving scaling.
+            </p>
           </div>
         </div>
 
@@ -30,15 +40,16 @@ export default function CravingHub() {
           <Card className="bg-black/20 border-white/10 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
-                <Brain className="w-5 h-5"/> Create Your Own
+                <Brain className="w-5 h-5" /> Create Your Own
               </CardTitle>
               <CardDescription className="text-white/70">
-                Use the original AI Craving Creator you already know. No changes.
+                Use the original AI Craving Creator you already know. No
+                changes.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button 
-                onClick={() => setLocation("/craving-creator")} 
+              <Button
+                onClick={() => setLocation("/craving-creator")}
                 className="bg-white text-black w-full hover:bg-white/90 transition-colors"
                 data-testid="button-craving-creator"
               >
@@ -50,15 +61,16 @@ export default function CravingHub() {
           <Card className="bg-black/20 border-white/10 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
-                <Sparkles className="w-5 h-5"/> Healthy Premade Cravings
+                <Sparkles className="w-5 h-5" /> Healthy Premade Cravings
               </CardTitle>
               <CardDescription className="text-white/70">
-                20 smarter recipes that satisfy the feeling you're chasing — with servings 1–10.
+                20 smarter recipes that satisfy the feeling you're chasing —
+                with servings 1–10.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button 
-                onClick={() => setLocation("/craving-presets")} 
+              <Button
+                onClick={() => setLocation("/craving-presets")}
                 className="bg-white text-black w-full hover:bg-white/90 transition-colors"
                 data-testid="button-craving-presets"
               >
