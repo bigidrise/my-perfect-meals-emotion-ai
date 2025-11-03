@@ -7,9 +7,7 @@ import {
   Calculator,
   ShoppingCart,
   Lightbulb,
-  Video,
   Users,
-  MessageCircle,
   User,
   Activity,
 } from "lucide-react";
@@ -75,28 +73,12 @@ export default function DashboardNew() {
       testId: "card-inspiration",
     },
     {
-      title: "App Education",
-      description: "Nutrition guides & how-to videos",
-      icon: Video,
-      route: "/learn",
-      gradient: "",
-      testId: "card-tutorials",
-    },
-    {
       title: "Care Team",
       description: "Manage your support team",
       icon: Users,
       route: "/care-team",
       gradient: "",
       testId: "card-care-team",
-    },
-    {
-      title: "Founders Message",
-      description: "From our founders",
-      icon: MessageCircle,
-      route: "/founders",
-      gradient: "",
-      testId: "card-founders-message",
     },
   ];
 

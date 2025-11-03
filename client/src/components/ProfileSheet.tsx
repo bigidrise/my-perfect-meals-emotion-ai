@@ -17,6 +17,7 @@ import {
   CreditCard,
   LogOut,
   ChevronRight,
+  MessageCircle,
 } from "lucide-react";
 import { logout } from "@/lib/auth";
 import { useAuth } from "@/contexts/AuthContext";
@@ -73,6 +74,13 @@ export function ProfileSheet({ children }: ProfileSheetProps) {
       route: "/privacy",
       testId: "menu-privacy",
     },
+    {
+      title: "About My Perfect Meals",
+      description: "Message from our founders",
+      icon: MessageCircle,
+      route: "/founders",
+      testId: "menu-about",
+    },
   ];
 
   return (
@@ -107,15 +115,15 @@ export function ProfileSheet({ children }: ProfileSheetProps) {
               <button
                 key={item.route}
                 onClick={() => setLocation(item.route)}
-                className="w-full flex items-center gap-3 p-3 bg-black/20 hover:bg-black/40 border border-white/10 rounded-xl transition-all group"
+                className="w-full flex items-center gap-2 p-2 bg-black/20 hover:bg-black/40 border border-white/10 rounded-lg transition-all group"
                 data-testid={item.testId}
               >
-                <Icon className="h-5 w-5 text-orange-400" />
+                <Icon className="h-4 w-4 text-orange-400" />
                 <div className="flex-1 text-left">
-                  <p className="text-white font-medium text-sm">{item.title}</p>
-                  <p className="text-white/60 text-xs">{item.description}</p>
+                  <p className="text-white font-medium text-xs">{item.title}</p>
+                  <p className="text-white/60 text-[10px]">{item.description}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-white/40 group-hover:text-white/70 transition-colors" />
+                <ChevronRight className="h-3 w-3 text-white/40 group-hover:text-white/70 transition-colors" />
               </button>
             );
           })}
