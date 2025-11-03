@@ -45,10 +45,10 @@ export default function CravingHub() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="bg-black/20 border-white/10 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
-                <Brain className="w-5 h-5" /> Create Your Own
+              <CardTitle className="text-white flex items-center gap-2 text-sm">
+                <Brain className="w-4 h-4" /> Create Your Own
               </CardTitle>
-              <CardDescription className="text-white/70">
+              <CardDescription className="text-white/70 text-xs">
                 Use the original AI Craving Creator you already know. No
                 changes.
               </CardDescription>
@@ -66,10 +66,10 @@ export default function CravingHub() {
 
           <Card className="bg-black/20 border-white/10 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
-                <Sparkles className="w-5 h-5" /> Healthy Premade Cravings
+              <CardTitle className="text-white flex items-center gap-2 text-sm">
+                <Sparkles className="w-4 h-4" /> Healthy Premade Cravings
               </CardTitle>
-              <CardDescription className="text-white/70">
+              <CardDescription className="text-white/70 text-xs">
                 20 smarter recipes that satisfy the feeling you're chasing —
                 with servings 1–10.
               </CardDescription>
