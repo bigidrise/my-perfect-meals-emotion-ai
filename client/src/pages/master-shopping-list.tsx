@@ -19,26 +19,27 @@ export default function MasterShoppingList() {
       "
     >
       {/* Fixed Back/Home button */}
-      <Button
-        onClick={() => setLocation("/dashboard")}
-        variant="ghost"
-        className="
-          fixed top-4 left-4 z-50
-          flex items-center gap-2
-          rounded-2xl
-          bg-black/40
-          backdrop-blur-lg
-          border border-orange-400/50
-          text-orange-400
-          hover:bg-orange-500/20
-          hover:text-orange-300
-          transition
-        "
-        data-testid="button-back-dashboard"
-      >
-        <Home className="h-4 w-4" />
-        <span>Home</span>
-      </Button>
+      <div className="fixed top-4 left-4 z-50">
+        <Button
+          onClick={() => setLocation("/dashboard")}
+          variant="ghost"
+          className="
+            flex items-center gap-2
+            rounded-2xl
+            bg-black/40
+            backdrop-blur-lg
+            border border-orange-400/50
+            text-orange-400
+            hover:bg-orange-500/20
+            hover:text-orange-300
+            transition
+          "
+          data-testid="button-back-dashboard"
+        >
+          <Home className="h-4 w-4" />
+          <span>Home</span>
+        </Button>
+      </div>
 
       <div className="max-w-4xl mx-auto">
 
