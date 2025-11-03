@@ -49,7 +49,7 @@ export default function DiabetesSupportPage() {
       >
         <Button
           onClick={() => setLocation("/diabetic-hub")}
-          className="flex items-center gap-2 text-white bg-black/20 backdrop-blur-sm border border-white/30 hover:bg-black/30 transition-all duration-200 font-medium rounded-xl shadow-2xl"
+          className="flex items-center gap-2 text-white bg-black/20 backdrop-blur-sm border border-white/30 hover:bg-black/30 transition-all duration-200 font-medium rounded-2xl shadow-2xl"
         >
           <ArrowLeft className="h-4 w-4 text-white" />
           
