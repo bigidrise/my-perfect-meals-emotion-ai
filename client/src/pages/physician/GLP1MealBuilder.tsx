@@ -584,7 +584,7 @@ export default function GLP1MealBuilder() {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => setLocation("/plan-builder-hub")}
+        onClick={() => setLocation("/dashboard")}
         className="fixed top-4 left-4 z-50 flex items-center gap-2 text-white hover:bg-white/20 bg-black/30 border border-white/20 rounded-2xl p-3 shadow-lg"
       >
         <ArrowLeft className="h-4 w-4" />

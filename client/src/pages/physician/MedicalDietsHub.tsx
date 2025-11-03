@@ -570,7 +570,7 @@ export default function MedicalDietHub() {
           if (clientId) {
             setLocation(`/pro/clients/${clientId}/dashboard`);
           } else {
-            setLocation("/plan-builder-hub");
+            setLocation("/dashboard");
           }
         }}
         className="fixed top-4 left-4 z-[9999] isolate overflow-hidden rounded-2xl px-3 py-2 bg-white/10 backdrop-blur-none border border-white/30 text-white shadow-lg hover:bg-white/20 transition flex items-center gap-2"
@@ -641,7 +641,7 @@ export default function MedicalDietHub() {
               </CardHeader>
               <CardContent className="p-6">
                 <div className="grid md:grid-cols-2 gap-4">
-                  {getAllHormonePresets().map((preset) => (
+                  {getAllHormonePresets().map((preset: any) => (
                     <Card key={preset.id} className="bg-black/40 backdrop-blur-lg border border-purple-400/30 hover:border-purple-400/60 transition-all group" data-testid={`card-hormone-${preset.id}`}>
                       <CardHeader className="p-5 bg-gradient-to-r from-purple-600/10 to-pink-600/10 cursor-pointer" onClick={() => setLocation(`/hormone-presets/${preset.id}`)}>
                         <CardTitle className="text-lg text-white group-hover:text-purple-300 transition-colors flex items-center justify-between">
@@ -655,7 +655,7 @@ export default function MedicalDietHub() {
                       <CardContent className="p-5">
                         <p className="text-sm text-white/70 mb-3">{preset.intent}</p>
                         <div className="flex flex-wrap gap-2 mb-3">
-                          {preset.nutrientEmphasisTags.slice(0, 3).map((tag, i) => (
+                          {preset.nutrientEmphasisTags.slice(0, 3).map((tag: string, i: number) => (
                             <Badge key={i} variant="secondary" className="bg-purple-600/20 text-purple-200 text-xs">{tag}</Badge>
                           ))}
                           {preset.nutrientEmphasisTags.length > 3 && (

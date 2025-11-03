@@ -83,7 +83,7 @@ export default function GLP1Hub() {
           if (clientId) {
             setLocation(`/pro/clients/${clientId}/dashboard`);
           } else {
-            setLocation("/plan-builder-hub");
+            setLocation("/dashboard");
           }
         }}
         aria-label="Back to Client Dashboard"
@@ -293,9 +293,9 @@ export default function GLP1Hub() {
       {/* Floating */}
       <div className="fixed bottom-4 left-4 z-50">
         <Button
-          onClick={() => setLocation("/plan-builder-hub")}
+          onClick={() => setLocation("/dashboard")}
           className="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl p-3 shadow-lg"
-          title="Back to Plan Builder Hub"
+          title="Back to Dashboard"
         >
           <ArrowLeft className="w-5 h-5" />
         </Button>
