@@ -192,8 +192,8 @@ export default function Welcome() {
 
         {/* Emotion AI Badge - Styled to be visible */}
         <div className="mb-12 flex justify-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-black via-gray-900 to-black rounded-full border border-white/20 shadow-lg">
-            <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-black via-orange-600 to-black rounded-full border border-orange-400/30 shadow-lg">
+            <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
             <span className="text-white font-semibold text-sm">
               Powered by Emotion AI
             </span>
