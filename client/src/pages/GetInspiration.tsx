@@ -296,7 +296,7 @@ export default function GetInspiration() {
       <Button
         onClick={() => setLocation("/dashboard")}
         variant="ghost"
-        className="fixed top-4 left-4 z-50 text-white hover:bg-white/10 bg-black/40 backdrop-blur-md border border-white/20 shadow-lg"
+        className="fixed top-4 left-4 z-50 text-white hover:bg-white/10 bg-black/40 backdrop-blur-none border border-white/20 shadow-lg"
         data-testid="button-home"
       >
         <Home className="w-5 h-5" />
@@ -310,8 +310,8 @@ export default function GetInspiration() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl font-bold text-white mb-2">Get Inspiration</h1>
-          <p className="text-white/90 text-lg">Daily Motivation and Journaling</p>
+          <h1 className="text-2xl font-bold text-white mb-2">Get Inspiration</h1>
+          <p className="text-white/90 text-md">Daily Motivation and Journaling</p>
         </motion.div>
 
         {/* Daily Motivation Card */}
@@ -322,14 +322,14 @@ export default function GetInspiration() {
           className="bg-black/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl p-6 mb-8"
         >
           <div className="text-center mb-4">
-            <div className="text-3xl mb-2">💪 ✨ 💪</div>
-            <h2 className="text-2xl font-bold text-white mb-2">Daily Motivation</h2>
-            <p className="text-white/90">Inspirational Quotes to start your day</p>
+            <div className="text-2xl mb-2">💪 ✨ 💪</div>
+            <h2 className="text-xl font-bold text-md text-white mb-2">Daily Motivation</h2>
+            <p className="text-md text-white/90">Inspirational Quotes to start your day</p>
           </div>
 
           {/* Quote Display */}
           <div className="bg-black/20 backdrop-blur-sm border border-white/30 rounded-xl p-6 mb-4 hover:bg-black/30 hover:border-orange-400/50 transition-all duration-300">
-            <p className="italic text-xl text-white font-medium leading-relaxed text-center">
+            <p className="italic text-md text-white font-medium leading-relaxed text-center">
               "{quote}"
             </p>
           </div>
@@ -342,7 +342,7 @@ export default function GetInspiration() {
           >
             <div className="flex items-center justify-center gap-2 mb-1">
               <span className="text-2xl">🔄</span>
-              <h3 className="font-semibold text-lg">Get New Inspiration</h3>
+              <h3 className="font-semibold text-md">Get New Inspiration</h3>
             </div>
             <p className="text-xs opacity-90">Fresh motivation when you need it</p>
           </button>
@@ -357,8 +357,8 @@ export default function GetInspiration() {
         >
           <div className="text-center mb-6">
             <div className="text-4xl mb-3">🧠</div>
-            <h2 className="text-2xl font-bold text-white mb-2">Daily Health Journal</h2>
-            <p className="text-white/90 italic text-lg">
+            <h2 className="text-xl font-bold text-white mb-2">Daily Health Journal</h2>
+            <p className="text-white/90 italic text-sm">
               "Free your mind, and the rest will follow."
             </p>
           </div>

@@ -128,8 +128,8 @@ export default function BodyCompositionPro() {
           bg-white/5 backdrop-blur-2xl border border-white/10 shadow-xl">
           <span className="absolute inset-0 -z-0 pointer-events-none rounded-2xl
                            bg-gradient-to-r from-white/10 via-transparent to-white/5" />
-          <h1 className="relative z-10 text-3xl md:text-4xl font-bold">Body Composition (Pro)</h1>
-          <p className="relative z-10 mt-2 text-white/85">
+          <h1 className="relative z-10 text-2xl md:text-2xl font-bold">Body Composition (Pro)</h1>
+          <p className="relative z-10 mt-2 text-white/85 text-md">
             Record results from DEXA, BodPod, calipers, or smart scales. We'll compute the rest.
           </p>
         </div>
@@ -138,10 +138,10 @@ export default function BodyCompositionPro() {
           <span className="absolute inset-0 -z-0 pointer-events-none rounded-2xl
                            bg-gradient-to-br from-white/10 via-transparent to-white/5" />
           <CardHeader className="relative z-10">
-            <CardTitle className="text-white flex items-center gap-2">
+            <CardTitle className="text-white flex items-center gap-2 text-lg">
               <Scale className="h-5 w-5" /> Enter Measurements
             </CardTitle>
-            <CardDescription className="text-white/80">
+            <CardDescription className="text-white/80 text-md">
               Use consistent conditions (time of day, hydration, clothing) for best trending.
             </CardDescription>
           </CardHeader>
@@ -258,7 +258,7 @@ export default function BodyCompositionPro() {
           <span className="absolute inset-0 -z-0 pointer-events-none rounded-2xl
                            bg-gradient-to-br from-white/10 via-transparent to-white/5" />
           <CardHeader className="relative z-10">
-            <CardTitle className="text-white">Derived Metrics</CardTitle>
+            <CardTitle className="text-lg text-white">Derived Metrics</CardTitle>
             <CardDescription className="text-white/80">
               Instant calculations based on your inputs
             </CardDescription>
@@ -298,7 +298,7 @@ export default function BodyCompositionPro() {
                 </div>
               </>
             ) : (
-              <div className="text-white/80">
+              <div className="text-white/80 text-sm">
                 Enter weight, height, and body fat % to see results.
               </div>
             )}

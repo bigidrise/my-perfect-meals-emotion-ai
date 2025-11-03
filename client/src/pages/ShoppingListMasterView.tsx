@@ -153,7 +153,7 @@ export default function ShoppingListMasterView() {
     >
       <Button
         onClick={() => setLocation("/dashboard")}
-        className="fixed top-4 left-4 z-50 bg-black/30 hover:bg-black/50 text-white rounded-2xl border border-white/10 backdrop-blur-lg"
+        className="fixed top-4 left-4 z-50 bg-black/30 hover:bg-black/50 text-white rounded-2xl border border-white/10 backdrop-blur-none"
         size="sm"
         data-testid="button-back-dashboard"
       >
@@ -165,7 +165,7 @@ export default function ShoppingListMasterView() {
         <div className="rounded-2xl bg-white/5 border border-white/20 p-4 backdrop-blur">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-white text-2xl font-semibold flex items-center gap-2">
+              <h1 className="text-white text-2xl font-md flex items-center gap-2">
                 <ShoppingCart className="h-6 w-6" />
                 Master Shopping List
               </h1>

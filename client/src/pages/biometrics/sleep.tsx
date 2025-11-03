@@ -199,7 +199,7 @@ export default function SleepPage() {
   }, [histQ.data, timeframe]);
 
   return (
-    <div className="relative min-h-screen p-6 text-white bg-gradient-to-br from-black/70 via-purple-900 to-black/80">
+    <div className="relative min-h-screen p-6 text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80">
       <div className="fixed top-4 left-4 z-50">
         <Button
           onClick={() => setLocation("/my-biometrics")}
@@ -215,8 +215,8 @@ export default function SleepPage() {
           bg-white/5 backdrop-blur-2xl border border-white/10 shadow-xl">
           <span className="absolute inset-0 -z-0 pointer-events-none rounded-2xl
                            bg-gradient-to-r from-white/10 via-transparent to-white/5" />
-          <h1 className="relative z-10 text-3xl md:text-4xl font-bold">😴 Sleep</h1>
-          <p className="relative z-10 mt-2 text-white/85">
+          <h1 className="relative z-10 text-2xl md:text-2xl font-semi-bold">😴 Sleep</h1>
+          <p className="relative z-10 mt-2 text-white/85 text-md">
             Track your sleep sessions and analyze patterns over time.
           </p>
         </div>
@@ -306,7 +306,7 @@ export default function SleepPage() {
             ) : todayQ.error ? (
               <div className="mt-3 text-sm text-rose-300">Couldn't load today.</div>
             ) : (
-              <div className="mt-3 text-3xl font-bold text-white">
+              <div className="mt-3 text-xl font-bold text-white">
                 {Math.round(todayQ.data?.totalMinutes ?? 0)} min
               </div>
             )}
