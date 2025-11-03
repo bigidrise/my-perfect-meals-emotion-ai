@@ -105,21 +105,16 @@ export default function DashboardNew() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#2b2b2b] pb-20 flex flex-col">
-      {/* Header */}
-      <div className="bg-black/40 backdrop-blur-md border-b border-white/10 sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 py-6 relative">
-          {/* Profile Avatar - Top Right */}
-          <div className="absolute top-4 right-4">
-            <ProfileSheet>
-              <button
-                className="p-2 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 hover:from-orange-600 hover:to-orange-800 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-                data-testid="button-profile-avatar"
-              >
-                <User className="h-6 w-6 text-white" />
-              </button>
-            </ProfileSheet>
-          </div>
-        </div>
+      {/* Fixed Profile Avatar - Top Right */}
+      <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50">
+        <ProfileSheet>
+          <button
+            className="p-2 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 hover:from-orange-600 hover:to-orange-800 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+            data-testid="button-profile-avatar"
+          >
+            <User className="h-6 w-6 text-white" />
+          </button>
+        </ProfileSheet>
       </div>
 
       {/* Main Content - Non-Scrolling Centered Grid */}
