@@ -82,12 +82,12 @@ export default function DashboardNew() {
       testId: "card-tutorials",
     },
     {
-      title: "ProCare Portal",
-      description: "Client management & support",
+      title: "Care Team",
+      description: "Manage your support team",
       icon: Users,
-      route: "/pro-portal",
+      route: "/care-team",
       gradient: "",
-      testId: "card-procare-portal",
+      testId: "card-care-team",
     },
     {
       title: "Founders Message",

@@ -65,6 +65,7 @@ import ShoppingListView from "@/pages/ShoppingListView";
 import ShoppingListMasterView from "@/pages/ShoppingListMasterView";
 
 // Pro Portal (core MVP feature)
+import CareTeam from "@/pages/CareTeam";
 import ProPortal from "@/pages/ProPortal";
 import ProClients from "@/pages/pro/ProClients";
 import ProClientDashboard from "@/pages/pro/ProClientDashboard";
@@ -214,12 +215,13 @@ export default function Router() {
           component={ShoppingListView}
         />
 
-        {/* DELETED: CareTeamPage, AthleteBoard routes */}
-
-        {/* Pro Portal Routes */}
+        {/* ProCare Feature Routes (Care Team → Pro Portal → Client Dashboard → Athlete Board) */}
+        <Route path="/care-team" component={CareTeam} />
         <Route path="/pro-portal" component={ProPortal} />
         <Route path="/pro/clients" component={ProClients} />
         <Route path="/pro/clients/:id" component={ProClientDashboard} />
+        <Route path="/pro-client-dashboard" component={ProClientDashboard} />
+        <Route path="/athlete-board" component={AthleteBoard} />
         <Route path="/pro/clients/:id/athlete-board" component={AthleteBoard} />
 
         {/* Craving Creator Routes */}
