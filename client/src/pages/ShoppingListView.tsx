@@ -205,7 +205,7 @@ export default function ShoppingListView() {
       transition={{ duration: 0.6 }}
       className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80"
     >
-      <div className="max-w-2xl mx-auto p-4 space-y-4">
+      <div className="max-w-2xl mx-auto p-4 pb-24 space-y-4">
         {/* Dashboard Button */}
         <div className="flex justify-start">
           <Button
@@ -410,25 +410,6 @@ export default function ShoppingListView() {
             )}
           </CardContent>
         </Card>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="flex justify-center space-x-4">
-          <Button
-            onClick={() => setLocation("/weekly-meal-board")}
-            variant="outline"
-            className="bg-white/10 backdrop-blur-xl border-white/20 text-white hover:bg-white/20 shadow-lg"
-          >
-            📅 Edit Meal Board
-          </Button>
-          
-          <Button
-            onClick={() => setLocation("/plan-builder-hub")}
-            variant="outline"
-            className="bg-white/10 backdrop-blur-xl border-white/20 text-white hover:bg-white/20 shadow-lg"
-          >
-            🍽️ Plan Builder Hub
-          </Button>
         </div>
       </div>
       
