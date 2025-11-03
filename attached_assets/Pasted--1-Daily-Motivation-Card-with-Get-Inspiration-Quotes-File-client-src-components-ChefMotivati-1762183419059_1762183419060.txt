@@ -1,0 +1,56 @@
+📝 1. Daily Motivation Card (with Get Inspiration & Quotes)
+File: client/src/components/ChefMotivationCard.tsx
+
+What it contains:
+
+50+ motivational quotes stored in MOTIVATION_QUOTES array (lines 5-51)
+Daily quote rotation (new quote each day, stored in localStorage)
+"Get New Inspiration" button to manually refresh the quote
+Glassmorphism design with animated sparkles ✨
+Cyan/black gradient background
+Key Features:
+
+Quotes persist for 24 hours in localStorage (dailyQuote + quoteDate)
+Click button to get instant new quote
+Auto-rotates daily
+🧠 2. Daily Health Journal
+Primary File: client/src/pages/daily-journal.tsx
+
+What it contains:
+
+Daily health reflection prompts (7 rotating questions)
+Mood selection (Happy/Neutral/Sad with emoji icons)
+Energy level tracker (High/Medium/Low)
+Voice-to-text journaling (speech recognition)
+Yes/No success tracking
+Pink/rose gradient background with glassmorphism cards
+Features:
+
+Mood options: 😊 Great, 😐 Okay, 😔 Tough
+Energy levels: 🔋 High, ⚡ Medium, 🪫 Low
+Voice recording with "Speak to Journal" button
+Auto-saves to mock API (lines 126-148)
+🆚 Alternative Journal Version
+File: client/src/pages/wellness/DailyJournalPage.tsx
+
+Differences:
+
+More advanced with export to text file functionality
+Voice recognition with auto-restart on timeout
+Shows list of past entries with delete option
+Purple/black gradient instead of pink/rose
+localStorage-based (no API calls)
+Export journal as .txt file
+📦 Summary for New Agent
+Copy these files to new project:
+
+# Daily Motivation Card
+client/src/components/ChefMotivationCard.tsx
+# Daily Health Journal (pick one)
+client/src/pages/daily-journal.tsx                    # API-based version
+client/src/pages/wellness/DailyJournalPage.tsx        # localStorage version with export
+
+Tell the new agent:
+
+"Use ChefMotivationCard.tsx for the daily motivation quotes with 'Get New Inspiration' button. Use daily-journal.tsx for the health journal with mood tracking, energy levels, and voice input. Both use glassmorphism design and localStorage for data persistence."
+

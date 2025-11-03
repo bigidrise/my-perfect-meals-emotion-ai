@@ -1,0 +1,420 @@
+import { useState, useEffect, useRef } from "react";
+import { useLocation } from "wouter";
+import { ArrowLeft, Mic, Save, Download, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
+import { useAuth } from "@/contexts/AuthContext";
+
+interface JournalEntry {
+  id: string;
+  date: string;
+  timestamp: number;
+  content: string;
+}
+
+export default function DailyJournalPage() {
+  const [, setLocation] = useLocation();
+  const { toast } = useToast();
+  const { user } = useAuth();
+  const [currentEntry, setCurrentEntry] = useState("");
+  const [entries, setEntries] = useState<JournalEntry[]>([]);
+  const [isListening, setIsListening] = useState(false);
+  const [recognition, setRecognition] = useState<any>(null);
+  const isListeningRef = useRef(false);
+
+  // Load entries from localStorage on mount
+  useEffect(() => {
+    const stored = localStorage.getItem("dailyJournalEntries");
+    if (stored) {
+      try {
+        setEntries(JSON.parse(stored));
+      } catch (error) {
+        console.error("Failed to load journal entries:", error);
+      }
+    }
+
+    // Initialize Web Speech API
+    let recognitionInstance: any = null;
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+      recognitionInstance = new SpeechRecognition();
+      recognitionInstance.continuous = true;
+      recognitionInstance.interimResults = true;
+      recognitionInstance.lang = 'en-US';
+
+      recognitionInstance.onresult = (event: any) => {
+        const transcript = Array.from(event.results)
+          .map((result: any) => result[0])
+          .map((result: any) => result.transcript)
+          .join('');
+        setCurrentEntry(transcript);
+      };
+
+      recognitionInstance.onerror = (event: any) => {
+        console.error('Speech recognition error:', event.error);
+        
+        // Handle specific error types
+        if (event.error === 'network') {
+          console.log('Network error - this is common and usually temporary');
+          // Auto-retry network errors after a short delay
+          setTimeout(() => {
+            if (isListeningRef.current) {
+              try {
+                recognitionInstance.start();
+                console.log('Auto-restarting speech recognition after network error');
+              } catch (e) {
+                console.log('Could not restart recognition:', e);
+                setIsListening(false);
+                isListeningRef.current = false;
+              }
+            }
+          }, 1000);
+        } else if (event.error === 'not-allowed') {
+          setIsListening(false);
+          isListeningRef.current = false;
+          toast({
+            title: "Microphone access denied",
+            description: "Please allow microphone access in your browser settings.",
+            variant: "destructive",
+          });
+        } else if (event.error === 'no-speech') {
+          // No speech detected - this is normal, just continue listening
+          console.log('No speech detected, continuing...');
+        } else {
+          setIsListening(false);
+          isListeningRef.current = false;
+          toast({
+            title: "Voice input error",
+            description: "Please try again or type your entry.",
+            variant: "destructive",
+          });
+        }
+      };
+
+      recognitionInstance.onend = () => {
+        // Auto-restart if still supposed to be listening (handles 60-second timeout)
+        if (isListeningRef.current) {
+          try {
+            recognitionInstance.start();
+            console.log('Auto-restarting speech recognition');
+          } catch (e) {
+            console.log('Recognition ended, could not restart:', e);
+            setIsListening(false);
+            isListeningRef.current = false;
+          }
+        } else {
+          setIsListening(false);
+          isListeningRef.current = false;
+        }
+      };
+
+      setRecognition(recognitionInstance);
+    }
+
+    // Cleanup: stop recognition on unmount
+    return () => {
+      if (recognitionInstance) {
+        try {
+          recognitionInstance.stop();
+        } catch (e) {
+          // Recognition may already be stopped
+        }
+      }
+    };
+  }, []);
+
+  const toggleListening = () => {
+    if (!recognition) {
+      toast({
+        title: "Voice input not supported",
+        description: "Your browser doesn't support voice input. Please type your entry.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (isListening) {
+      recognition.stop();
+      setIsListening(false);
+      isListeningRef.current = false;
+    } else {
+      try {
+        recognition.start();
+        setIsListening(true);
+        isListeningRef.current = true;
+        toast({
+          title: "Listening...",
+          description: "Speak your thoughts and they'll appear in the text area.",
+        });
+      } catch (e) {
+        console.error('Failed to start recognition:', e);
+        toast({
+          title: "Could not start voice input",
+          description: "Please try again.",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
+  const saveEntry = () => {
+    if (!currentEntry.trim()) {
+      toast({
+        title: "Empty entry",
+        description: "Please write something before saving.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const newEntry: JournalEntry = {
+      id: Date.now().toString(),
+      date: new Date().toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }),
+      timestamp: Date.now(),
+      content: currentEntry,
+    };
+
+    const updatedEntries = [newEntry, ...entries];
+    setEntries(updatedEntries);
+    localStorage.setItem("dailyJournalEntries", JSON.stringify(updatedEntries));
+    setCurrentEntry("");
+
+    toast({
+      title: "Entry saved!",
+      description: "Your journal entry has been saved successfully.",
+    });
+  };
+
+  const deleteEntry = (id: string) => {
+    const updatedEntries = entries.filter(entry => entry.id !== id);
+    setEntries(updatedEntries);
+    localStorage.setItem("dailyJournalEntries", JSON.stringify(updatedEntries));
+    
+    toast({
+      title: "Entry deleted",
+      description: "Your journal entry has been removed.",
+    });
+  };
+
+  const exportJournal = () => {
+    if (entries.length === 0) {
+      toast({
+        title: "No entries to export",
+        description: "Save some journal entries first!",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const content = entries
+      .map(entry => `${entry.date}\n${"=".repeat(50)}\n${entry.content}\n\n`)
+      .join("\n");
+
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `daily-journal-${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Journal exported!",
+      description: "Your journal has been downloaded as a text file.",
+    });
+  };
+
+  const goBack = () => {
+    const savedLocation = localStorage.getItem("navigationHistory");
+    if (savedLocation) {
+      const history = JSON.parse(savedLocation);
+      setLocation(history.from || "/dashboard");
+    } else {
+      setLocation("/dashboard");
+    }
+  };
+
+  // Authentication guard - render after all hooks
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-black via-purple-900 to-black flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-black/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl p-12 text-center max-w-md"
+        >
+          <div className="text-6xl mb-4">🔒</div>
+          <h2 className="text-2xl font-semibold text-white mb-4">Please Log In</h2>
+          <p className="text-gray-300 mb-6">
+            You need to be logged in to access your Daily Health Journal.
+          </p>
+          <Button
+            onClick={() => setLocation("/auth")}
+            className="bg-gradient-to-br from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white"
+          >
+            Go to Login
+          </Button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gradient-to-br from-black via-purple-900 to-black p-4 md:p-8"
+    >
+      {/* Fixed Back Button - Always Visible */}
+      <Button
+        onClick={goBack}
+        variant="ghost"
+        className="fixed top-4 left-4 z-50 text-white hover:bg-white/10 bg-black/40 backdrop-blur-md border border-white/20 shadow-lg"
+        data-testid="button-back"
+      >
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Dashboard
+      </Button>
+
+      <div className="max-w-4xl mx-auto">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-black/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl p-8 text-center mb-8 mt-12"
+        >
+          <div className="text-5xl mb-4">🧠</div>
+          <h1 className="text-3xl font-bold text-white mb-2">Daily Health Journal</h1>
+          <p className="text-gray-300 italic text-lg font-medium">
+            "Free your mind, and the rest will follow."
+          </p>
+        </motion.div>
+
+        {/* Journal Entry Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-black/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl p-6 mb-8"
+        >
+          <h2 className="text-xl font-semibold text-white mb-4">Today's Entry</h2>
+          
+          {/* Text Area */}
+          <textarea
+            value={currentEntry}
+            onChange={(e) => setCurrentEntry(e.target.value)}
+            placeholder="Speak or type your thoughts..."
+            className="w-full h-48 bg-black/40 text-white rounded-xl border border-white/20 p-4 resize-none focus:outline-none focus:border-teal-400/50 focus:ring-2 focus:ring-teal-400/20 transition-all"
+            data-testid="textarea-journal-entry"
+          />
+
+          {/* Action Buttons */}
+          <div className="flex gap-3 mt-4">
+            <Button
+              onClick={toggleListening}
+              className={`flex-1 ${
+                isListening
+                  ? "bg-red-600 hover:bg-red-700"
+                  : "bg-gradient-to-br from-black/90 via-teal-700 to-black/90"
+              } text-white border-2 ${
+                isListening ? "border-red-400" : "border-teal-300/40"
+              } hover:border-teal-300/90 transition-all`}
+              data-testid="button-mic"
+            >
+              <Mic className={`w-5 h-5 mr-2 ${isListening ? "animate-pulse" : ""}`} />
+              {isListening ? "Stop Recording" : "Voice Input"}
+            </Button>
+
+            <Button
+              onClick={saveEntry}
+              className="flex-1 bg-gradient-to-br from-black/90 via-emerald-700 to-black/90 text-white border-2 border-emerald-300/40 hover:border-emerald-300/90 transition-all"
+              data-testid="button-save-entry"
+            >
+              <Save className="w-5 h-5 mr-2" />
+              Save Entry
+            </Button>
+          </div>
+        </motion.div>
+
+        {/* Journal Entries List */}
+        {entries.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="bg-black/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl p-6 mb-8"
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold text-white">Journal Entries</h2>
+              <Button
+                onClick={exportJournal}
+                className="bg-gradient-to-br from-black/90 via-purple-700 to-black/90 text-white border-2 border-purple-300/40 hover:border-purple-300/90 transition-all"
+                data-testid="button-export-journal"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Export All
+              </Button>
+            </div>
+
+            <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+              {entries.map((entry, index) => (
+                <motion.div
+                  key={entry.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-black/40 rounded-xl border border-white/10 p-4 hover:border-teal-400/40 transition-all group"
+                  data-testid={`entry-${entry.id}`}
+                >
+                  <div className="flex justify-between items-start mb-2">
+                    <p className="text-sm text-gray-400 font-medium">{entry.date}</p>
+                    <Button
+                      onClick={() => deleteEntry(entry.id)}
+                      variant="ghost"
+                      size="sm"
+                      className="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-all"
+                      data-testid={`button-delete-${entry.id}`}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <p className="text-white leading-relaxed whitespace-pre-wrap">
+                    {entry.content}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Empty State */}
+        {entries.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="bg-black/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl p-12 text-center"
+          >
+            <div className="text-6xl mb-4">📝</div>
+            <h3 className="text-2xl font-semibold text-white mb-2">No entries yet</h3>
+            <p className="text-gray-400">
+              Start journaling your thoughts, feelings, and health progress above.
+            </p>
+          </motion.div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
