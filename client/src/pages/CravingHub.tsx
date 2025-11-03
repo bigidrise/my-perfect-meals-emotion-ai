@@ -45,7 +45,7 @@ export default function CravingHub() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="bg-black/20 border-white/10 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2 text-sm">
+              <CardTitle className="text-white flex items-center gap-2 text-lg">
                 <Brain className="w-4 h-4" /> Create Your Own
               </CardTitle>
               <CardDescription className="text-white/70 text-sm">
@@ -66,7 +66,7 @@ export default function CravingHub() {
 
           <Card className="bg-black/20 border-white/10 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2 text-sm">
+              <CardTitle className="text-white flex items-center gap-2 text-lg">
                 <Sparkles className="w-4 h-4" /> Healthy Premade Cravings
               </CardTitle>
               <CardDescription className="text-white/70 text-sm">
