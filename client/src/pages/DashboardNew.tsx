@@ -67,9 +67,9 @@ export default function DashboardNew() {
     },
     {
       title: "Get Inspiration",
-      description: "Daily motivation & tips",
+      description: "Daily Motivation and Journaling",
       icon: Lightbulb,
-      route: "/inspiration-journal",
+      route: "/get-inspiration",
       gradient: "",
       testId: "card-inspiration",
     },
