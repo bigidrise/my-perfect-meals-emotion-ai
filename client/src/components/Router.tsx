@@ -228,7 +228,9 @@ export default function Router() {
         <Route path="/pro/clients/:id" component={ProClientDashboard} />
         <Route path="/pro-client-dashboard" component={ProClientDashboard} />
         <Route path="/athlete-board" component={AthleteBoard} />
-        <Route path="/pro/clients/:id/athlete-board" component={AthleteBoard} />
+        <Route path="/pro/clients/:id/athlete-board">
+          {() => <AthleteBoard mode="procare" />}
+        </Route>
 
         {/* Craving Creator Routes */}
         <Route path="/craving-hub" component={CravingHub} />
