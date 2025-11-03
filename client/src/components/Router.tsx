@@ -51,6 +51,7 @@ import {
 // Dashboard navigation pages
 import TutorialHub from "@/pages/TutorialHub";
 import MyBiometrics from "@/pages/my-biometrics";
+import GetInspiration from "@/pages/GetInspiration";
 
 // DELETED: All non-MVP pages (hubs, specialty features, etc.)
 
@@ -130,6 +131,7 @@ export default function Router() {
         <Route path="/dashboard" component={DashboardNew} />
         <Route path="/tutorials" component={TutorialHub} />
         <Route path="/learn" component={Learn} />
+        <Route path="/get-inspiration" component={GetInspiration} />
         <Route path="/profile" component={ProfileNew} />
         {/* DELETED: AffiliatesPage, FoundersPage, FoundersSubmit, Changelog routes */}
 
