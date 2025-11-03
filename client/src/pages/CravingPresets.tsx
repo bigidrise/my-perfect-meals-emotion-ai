@@ -118,7 +118,7 @@ export default function CravingPresetsPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-yellow-500 to-black/80 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4">
       {/* Fixed Back to Meal Hub Button */}
       <Button
         variant="ghost"

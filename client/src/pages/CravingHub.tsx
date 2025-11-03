@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useLocation } from "wouter";
-import { Brain, Sparkles, ArrowLeft } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Home } from "lucide-react";
 
 export default function CravingHub() {
   const [, setLocation] = useLocation();
@@ -14,8 +14,8 @@ export default function CravingHub() {
         className="fixed top-4 left-4 z-50 flex items-center gap-2 text-white bg-black/10 backdrop-blur-none border border-white/20 hover:bg-black/30 transition-all duration-200 rounded-2xl"
         data-testid="button-back-dashboard"
       >
-        <ArrowLeft className="w-4 h-4" />
-        Dashboard
+        <Home className="w-4 h-4" />
+        
       </Button>
 
       <div className="max-w-5xl mx-auto pt-20">
