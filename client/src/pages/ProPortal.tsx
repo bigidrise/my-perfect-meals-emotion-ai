@@ -37,16 +37,19 @@ export default function ProPortal() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <GlassCard className="border-2 border-indigo-500/40 cursor-pointer hover:border-indigo-400/60 transition-all">
+          <GlassCard 
+            className="border-2 border-indigo-500/40 cursor-pointer hover:border-indigo-400/60 transition-all"
+            onClick={() => setLocation("/pro/clients")}
+          >
             <GlassCardContent className="p-6 space-y-4">
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-indigo-300" />
                 <h2 className="text-xl font-bold text-white">
-                  Client Dashboard
+                  Manage Clients
                 </h2>
               </div>
               <p className="text-sm text-white/70">
-                View your client's current meal plan, macro targets, and daily progress.
+                Add and manage clients, set macro targets, and track their progress.
               </p>
             </GlassCardContent>
           </GlassCard>
@@ -80,23 +83,15 @@ export default function ProPortal() {
           </GlassCard>
         </div>
 
-        {/* Coming Soon Notice */}
+        {/* Getting Started */}
         <GlassCard className="border-2 border-purple-500/40">
           <GlassCardContent className="p-6">
             <div className="text-center space-y-3">
-              <h3 className="text-xl font-bold text-white">Pro Portal Features Coming Soon</h3>
+              <h3 className="text-xl font-bold text-white">Welcome to Pro Portal</h3>
               <p className="text-white/70 text-sm max-w-2xl mx-auto">
-                The Pro Portal is currently under development. You'll soon be able to manage client meal plans, 
-                track their progress, add custom meals, and collaborate seamlessly on their health journey.
+                Start by adding clients above, then set their macro targets and dietary directives. 
+                You can generate meal plans, track progress, and collaborate on their health journey.
               </p>
-              <div className="pt-4">
-                <button
-                  onClick={() => setLocation("/care-team")}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all"
-                >
-                  Back to Care Team
-                </button>
-              </div>
             </div>
           </GlassCardContent>
         </GlassCard>

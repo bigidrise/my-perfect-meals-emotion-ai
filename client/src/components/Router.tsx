@@ -66,6 +66,16 @@ import ShoppingListMasterView from "@/pages/ShoppingListMasterView";
 
 // Pro Portal (core MVP feature)
 import ProPortal from "@/pages/ProPortal";
+import ProClients from "@/pages/pro/ProClients";
+import ProClientDashboard from "@/pages/pro/ProClientDashboard";
+import AthleteBoard from "@/pages/pro/AthleteBoard";
+
+// Craving pages
+import CravingHub from "@/pages/CravingHub";
+import CravingPresets from "@/pages/CravingPresets";
+
+// Founders page
+import FoundersPage from "@/pages/Founders";
 
 // DELETED: AffiliatesPage
 
@@ -168,17 +178,13 @@ export default function Router() {
         {/* DELETED: All meal planning hub pages, specialty routes: MasterShoppingList, VoiceSettings, SimplePlanPage, SupplementHub, LabValueSupport, LearnToCook, KidsMealsHub, BloodSugarHub, BodyComposition, CycleTracking, Calendar, SupplementEducation, SuccessStories, DailySummary, WinePairing, MealPairingAI, UpgradePage, WellnessCompanion, StressEatingSolution, PlanBuilderHub */}
         {/* Cafeteria Setup route: show page if enabled; otherwise Coming Soon */}
         <Route path="/cafeteria-setup">
-          {(FEATURES.cafeteria as string) === "alpha" ? (
-            <CafeteriaSetup />
-          ) : (
-            <ComingSoon
-              title="Cafeteria Setup"
-              blurb="We'll auto-generate meals from your onboarding preferences here."
-              hint="For now, use Add from Menu or Fridge Rescue."
-              ctaLabel="Open Weekly Meal Board"
-              ctaHref="/weekly-meal-board"
-            />
-          )}
+          <ComingSoon
+            title="Cafeteria Setup"
+            blurb="We'll auto-generate meals from your onboarding preferences here."
+            hint="For now, use Add from Menu or Fridge Rescue."
+            ctaLabel="Open Weekly Meal Board"
+            ctaHref="/weekly-meal-board"
+          />
         </Route>
 
         {/* DELETED: TemplateHub route */}
@@ -212,7 +218,16 @@ export default function Router() {
 
         {/* Pro Portal Routes */}
         <Route path="/pro-portal" component={ProPortal} />
-        {/* DELETED: ProClients, ProClientDashboard routes */}
+        <Route path="/pro/clients" component={ProClients} />
+        <Route path="/pro/clients/:id" component={ProClientDashboard} />
+        <Route path="/pro/clients/:id/athlete-board" component={AthleteBoard} />
+
+        {/* Craving Creator Routes */}
+        <Route path="/craving-hub" component={CravingHub} />
+        <Route path="/craving-presets" component={CravingPresets} />
+
+        {/* Founders Route */}
+        <Route path="/founders" component={FoundersPage} />
 
         {/* 404 fallback */}
         <Route component={NotFound} />

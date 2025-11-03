@@ -25,7 +25,7 @@ function convertAthleteMealToMeal(athleteMeal: AthleteMeal): Meal {
     ...(athleteMeal.carb_source
       ? [{ item: athleteMeal.carb_source, amount: `${athleteMeal.carb_g}g` }]
       : []),
-    ...athleteMeal.fibrous_source.map((veg) => ({
+    ...athleteMeal.fibrous_source.map((veg: string) => ({
       item: veg,
       amount: "1 cup",
     })),
@@ -147,7 +147,7 @@ export function AthleteMealPickerDrawer({
         {/* Scrollable meal grid */}
         <div className="flex-1 overflow-y-auto">
           <div className="px-3 sm:px-4 py-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 w-full max-w-6xl mx-auto">
-            {filteredMeals.map((am) => (
+            {filteredMeals.map((am: AthleteMeal) => (
               <button
                 key={am.id}
                 onClick={() => {
@@ -191,7 +191,7 @@ export function AthleteMealPickerDrawer({
 
                 {am.tags?.length ? (
                   <div className="mt-1 flex flex-wrap gap-0.5">
-                    {am.tags.slice(0, 2).map((tag) => (
+                    {am.tags.slice(0, 2).map((tag: string) => (
                       <span
                         key={tag}
                         className="text-[9px] bg-purple-600/20 text-purple-300 px-1.5 py-0.5 rounded-full leading-none"
