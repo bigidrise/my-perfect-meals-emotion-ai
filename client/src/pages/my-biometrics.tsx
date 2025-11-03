@@ -1069,7 +1069,7 @@ export default function MyBiometrics() {
         {/* Calories chart - continuous 30 days (matches Steps) */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-white flex items-center gap-2"><BarChart3 className="h-5 w-5"/> Calories</CardTitle>
+              <CardTitle className="text-white text-xl flex items-center gap-2"><BarChart3 className="h-5 w-5"/> Calories</CardTitle>
               <ViewToggle value={caloriesView} onChange={setCaloriesView} />
             </CardHeader>
             <CardContent>
@@ -1090,7 +1090,7 @@ export default function MyBiometrics() {
         {/* STEPS with view toggle */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-white flex items-center gap-2"><Activity className="h-5 w-5"/> Steps</CardTitle>
+              <CardTitle className="text-white text-xl flex items-center gap-2"><Activity className="h-5 w-5"/> Steps</CardTitle>
               <ViewToggle value={stepsView} onChange={setStepsView} />
             </CardHeader>
             <CardContent>
@@ -1115,7 +1115,7 @@ export default function MyBiometrics() {
         {/* BODY with weight history */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-white flex items-center gap-2"><Scale className="h-5 w-5"/> Body Stats</CardTitle>
+              <CardTitle className="text-white text-xl flex items-center gap-2"><Scale className="h-5 w-5"/> Body Stats</CardTitle>
               <MonthViewToggle value={weightView} onChange={setWeightView} />
             </CardHeader>
             <CardContent>
@@ -1156,7 +1156,7 @@ export default function MyBiometrics() {
         {/* BLOOD PRESSURE with view toggle */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-white flex items-center gap-2"><Stethoscope className="h-5 w-5"/> Blood Pressure</CardTitle>
+              <CardTitle className="text-white text-xl flex items-center gap-2"><Stethoscope className="h-5 w-5"/> Blood Pressure</CardTitle>
               <ViewToggle value={bpView} onChange={setBpView} />
             </CardHeader>
             <CardContent>
@@ -1183,9 +1183,9 @@ export default function MyBiometrics() {
 
         {/* BODY COMPOSITION */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
-            <CardHeader><CardTitle className="text-white flex items-center gap-2"><Scale className="h-5 w-5"/> Body Composition</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="text-white text-xl flex items-center gap-2"><Scale className="h-5 w-5"/> Body Composition</CardTitle></CardHeader>
             <CardContent>
-              <p className="text-white/80 mb-4">Track DEXA, BodPod, InBody, and other professional body composition tests.</p>
+              <p className="text-white/80 text-base mb-4">Track DEXA, BodPod, InBody, and other professional body composition tests.</p>
               <Button 
                 onClick={() => setLocation("/biometrics/body-composition")}
                 className="w-full bg-white/10 border border-white/20 text-white hover:bg-white/20"
@@ -1198,9 +1198,9 @@ export default function MyBiometrics() {
 
         {/* SLEEP HISTORY */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
-            <CardHeader><CardTitle className="text-white flex items-center gap-2"><Activity className="h-5 w-5"/> Sleep History</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="text-white text-xl flex items-center gap-2"><Activity className="h-5 w-5"/> Sleep History</CardTitle></CardHeader>
             <CardContent>
-              <p className="text-white/80 mb-4">Track your sleep patterns, duration, and quality over time.</p>
+              <p className="text-white/80 text-base mb-4">Track your sleep patterns, duration, and quality over time.</p>
               <Button 
                 onClick={() => setLocation("/biometrics/sleep")}
                 className="w-full bg-white/10 border border-white/20 text-white hover:bg-white/20"
