@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import EmotionAIFooter from "@/components/EmotionAIFooter";
 
 interface LearningTopic {
   id: string;
@@ -517,9 +516,6 @@ export default function Learn() {
           )}
         </DialogContent>
       </Dialog>
-
-      {/* Emotion AI Footer */}
-      <EmotionAIFooter />
     </motion.div>
   );
 }
