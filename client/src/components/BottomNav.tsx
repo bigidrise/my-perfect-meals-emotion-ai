@@ -4,7 +4,7 @@ import { Home, Calendar, Sparkles, Crown } from "lucide-react";
 export default function BottomNav() {
   const [location, setLocation] = useLocation();
 
-I  const navItems = [
+  const navItems = [
     {
       id: "home",
       label: "Home",
