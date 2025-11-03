@@ -64,7 +64,6 @@ import GetInspiration from "@/pages/GetInspiration";
 // DELETED: WomensHealthHub, WomensHealthHubEducational, MensHealthHubEducational, WellnessHub, DailyJournalPage
 
 // Shopping List (core MVP feature)
-import ShoppingListView from "@/pages/ShoppingListView";
 import ShoppingListMasterView from "@/pages/ShoppingListMasterView";
 
 // Pro Portal (core MVP feature)
@@ -226,11 +225,7 @@ export default function Router() {
 
         {/* Shopping List Routes */}
         <Route path="/shopping-list-v2" component={ShoppingListMasterView} />
-        <Route path="/shopping-list" component={ShoppingListView} />
-        <Route
-          path="/shopping-list/:weekStartISO"
-          component={ShoppingListView}
-        />
+        <Route path="/shopping-list" component={ShoppingListMasterView} />
 
         {/* ProCare Feature Routes (Care Team → Pro Portal → Client Dashboard → Athlete Board) */}
         <Route path="/care-team" component={CareTeam} />
