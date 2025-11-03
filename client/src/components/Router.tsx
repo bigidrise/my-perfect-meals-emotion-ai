@@ -72,6 +72,11 @@ import ProClients from "@/pages/pro/ProClients";
 import ProClientDashboard from "@/pages/pro/ProClientDashboard";
 import AthleteBoard from "@/pages/pro/AthleteBoard";
 
+// Physician Hub Pages
+import DiabeticSupportHub from "@/pages/physician/DiabeticSupportHub";
+import DiabetesSupportPage from "@/pages/physician/DiabetesSupportPage";
+import DiabeticMenuBuilder from "@/pages/physician/DiabeticMenuBuilder";
+
 // Craving pages
 import CravingHub from "@/pages/CravingHub";
 import CravingPresets from "@/pages/CravingPresets";
@@ -231,6 +236,11 @@ export default function Router() {
         <Route path="/pro/clients/:id/athlete-board">
           {() => <AthleteBoard mode="procare" />}
         </Route>
+
+        {/* Physician Hub Routes (Diabetic, GLP-1, Medical Diets, Clinical Lifestyle) */}
+        <Route path="/diabetic-hub" component={DiabeticSupportHub} />
+        <Route path="/diabetes-support" component={DiabetesSupportPage} />
+        <Route path="/diabetic-menu-builder" component={DiabeticMenuBuilder} />
 
         {/* Craving Creator Routes */}
         <Route path="/craving-hub" component={CravingHub} />
