@@ -29,7 +29,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Home, Sparkles, Clock, Users, ArrowLeft, MapPin } from "lucide-react";
+import { Home, Sparkles, Clock, Users, ArrowUp, ArrowLeft, MapPin } from "lucide-react";
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -680,6 +680,18 @@ export default function RestaurantGuidePage() {
             </div>
           </CardContent>
         </Card>
+
+
+        {/* Floating Back-to-Top Arrow */}
+        <div className="flex justify-center mt-8">
+          <Button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="bg-black/30 backdrop-blur-lg border border-white/20 hover:bg-black/40 shadow-xl hover:shadow-2xl transition-all duration-200 rounded-full p-3"
+            size="sm"
+          >
+            <ArrowUp className="h-5 w-5 text-white" />
+          </Button>
+        </div>
       </div>
     </div>
     </motion.div>
