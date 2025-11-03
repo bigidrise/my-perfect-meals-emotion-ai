@@ -123,29 +123,31 @@ export default function DashboardNew() {
         </ProfileSheet>
       </div>
 
-      {/* Main Content - Non-Scrolling Centered Grid */}
-      <div className="flex-1 flex items-center justify-center px-4">
-        <div className="max-w-5xl w-full">
-          {/* Feature Cards Grid - 2x3 Layout (2 cols mobile, 3 cols desktop) */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Main Content - Vertical Button Stack */}
+      <div className="flex-1 flex items-center justify-center px-4 py-8">
+        <div className="max-w-2xl w-full">
+          {/* Feature Cards - Vertical Stack */}
+          <div className="flex flex-col gap-3">
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
                 <Card
                   key={feature.testId}
-                  className={`cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] active:scale-95 bg-black/30 backdrop-blur-lg border border-white/10 hover:border-orange-500/50 rounded-2xl shadow-md ${feature.testId === 'card-care-team' ? 'hidden' : ''}`}
+                  className={`cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] active:scale-95 bg-black/30 backdrop-blur-lg border border-white/10 hover:border-orange-500/50 rounded-xl shadow-md ${feature.testId === 'card-care-team' ? 'hidden' : ''}`}
                   onClick={() => handleCardClick(feature.route)}
                   data-testid={feature.testId}
                 >
-                  <CardContent className="p-4 md:p-6">
-                    <div className="flex flex-col items-center text-center space-y-2">
-                      <Icon className="h-8 w-8 md:h-10 md:w-10 text-white" />
-                      <h3 className="text-base md:text-md font-semibold text-white">
-                        {feature.title}
-                      </h3>
-                      <p className="text-xs md:text-sm text-white/90 leading-snug">
-                        {feature.description}
-                      </p>
+                  <CardContent className="p-3">
+                    <div className="flex items-center gap-3">
+                      <Icon className="h-5 w-5 text-white flex-shrink-0" />
+                      <div className="flex flex-col">
+                        <h3 className="text-sm font-semibold text-white">
+                          {feature.title}
+                        </h3>
+                        <p className="text-xs text-white/80">
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
