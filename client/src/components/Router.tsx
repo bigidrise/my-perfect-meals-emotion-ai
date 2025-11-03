@@ -78,6 +78,7 @@ import DiabetesSupportPage from "@/pages/physician/DiabetesSupportPage";
 import DiabeticMenuBuilder from "@/pages/physician/DiabeticMenuBuilder";
 import GLP1Hub from "@/pages/physician/GLP1Hub";
 import GLP1MealBuilder from "@/pages/physician/GLP1MealBuilder";
+import MedicalDietsHub from "@/pages/physician/MedicalDietsHub";
 
 // Craving pages
 import CravingHub from "@/pages/CravingHub";
@@ -245,6 +246,7 @@ export default function Router() {
         <Route path="/diabetic-menu-builder" component={DiabeticMenuBuilder} />
         <Route path="/glp1-hub" component={GLP1Hub} />
         <Route path="/glp1-meal-builder" component={GLP1MealBuilder} />
+        <Route path="/medical-diets-hub" component={MedicalDietsHub} />
 
         {/* Craving Creator Routes */}
         <Route path="/craving-hub" component={CravingHub} />
