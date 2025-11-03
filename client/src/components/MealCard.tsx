@@ -2,7 +2,7 @@
 import * as React from "react";
 import { BarChart3 } from "lucide-react";
 import { generateMedicalBadges, getUserMedicalProfile, type MedicalBadge } from "@/utils/medicalBadges";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import MacroBridgeButton from "@/components/biometrics/MacroBridgeButton";
@@ -153,7 +153,7 @@ export function MealCard({
             
             return medicalBadges && medicalBadges.length > 0 && (
               <div className="mt-2">
-                <HealthBadgesDropdown badges={badgeIds} />
+                <HealthBadgesPopover badges={badgeIds} />
               </div>
             );
           })()}

@@ -61,7 +61,7 @@ import type { BuilderPlanJSON, PlanDay } from "@/lib/builderPlansApi";
 import BuilderDayBoard, { type BuilderDayBoardRef } from "@/components/BuilderDayBoard";
 import { MealCard } from "@/components/MealCard";
 import MacroBridgeButton from "@/components/biometrics/MacroBridgeButton";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import { MacroBridgeFooter } from "@/components/biometrics/MacroBridgeFooter";
 import ShoppingAggregateBar from "@/components/ShoppingAggregateBar";
 import { normalizeIngredients } from "@/utils/ingredientParser";
@@ -197,7 +197,7 @@ function LocalMealCard({
         </div>
 
         {/* Health Badges Dropdown */}
-        <HealthBadgesDropdown badges={meal.badges} className="mt-2" />
+        <HealthBadgesPopover badges={meal.badges} className="mt-2" />
 
         {/* Add to Macros Button */}
         <MacroBridgeButton
@@ -650,7 +650,7 @@ export default function DiabeticMenuBuilder() {
                         <div className="text-xs text-white/70">
                           {meal.macros.calories} kcal • P{meal.macros.protein_g}g C{meal.macros.carbs_g}g F{meal.macros.fat_g}g
                         </div>
-                        <HealthBadgesDropdown badges={meal.badges} className="mt-2" />
+                        <HealthBadgesPopover badges={meal.badges} className="mt-2" />
                       </div>
                       <Button
                         size="sm"

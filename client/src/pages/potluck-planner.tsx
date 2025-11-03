@@ -47,7 +47,7 @@ import {
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { potluckMealsData, type PotluckMeal, type PotluckIngredient, type HealthBadge } from "@/data/potluckMealsData";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import ShoppingAggregateBar from "@/components/ShoppingAggregateBar";
 
 // 🔒 LOCKED: Ingredient quantity formatting system
@@ -180,7 +180,7 @@ export default function PotluckPlannerPage() {
                     
                     <div>
                       <h4 className="text-white font-medium mb-2">Health Benefits:</h4>
-                      <HealthBadgesDropdown badges={selectedMeal.healthBadges} className="mt-2" />
+                      <HealthBadgesPopover badges={selectedMeal.healthBadges} className="mt-2" />
                     </div>
                     
                     {/* Serving Size Selector */}
@@ -370,7 +370,7 @@ export default function PotluckPlannerPage() {
                     </div>
                     
                     <div className="mb-3">
-                      <HealthBadgesDropdown badges={meal.healthBadges} className="mt-2" />
+                      <HealthBadgesPopover badges={meal.healthBadges} className="mt-2" />
                     </div>
                     
                     <div className="text-white/80 text-sm">

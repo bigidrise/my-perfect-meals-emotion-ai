@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import { useLocation } from "wouter";
 import { queryClient } from "@/lib/queryClient";
 import { useLogMacros } from "@/hooks/useLogMacros";
@@ -660,7 +660,7 @@ const FridgeRescuePage = () => {
                     {/* Medical Badges */}
                     {meal.medicalBadges && meal.medicalBadges.length > 0 && (
                       <div className="flex flex-wrap gap-1">
-                        <HealthBadgesDropdown badges={meal.medicalBadges.map(b => b.badge)} className="mt-2" />
+                        <HealthBadgesPopover badges={meal.medicalBadges.map(b => b.badge)} className="mt-2" />
                       </div>
                     )}
 

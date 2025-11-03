@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import TrashButton from "@/components/ui/TrashButton";
 import MacroBridgeButton from "@/components/biometrics/MacroBridgeButton";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import { MacroBridgeFooter } from "@/components/biometrics/MacroBridgeFooter";
 import ShoppingAggregateBar from "@/components/ShoppingAggregateBar";
 import { normalizeIngredients } from "@/utils/ingredientParser";
@@ -235,7 +235,7 @@ function MealRow({
             <div className="text-xs text-white/60">
               {n.calories} kcal • P{n.protein_g} C{n.carbs_g} F{n.fat_g}
             </div>
-            <HealthBadgesDropdown badges={meal.badges} className="mt-2" />
+            <HealthBadgesPopover badges={meal.badges} className="mt-2" />
           </div>
 
           {isSelected ? (
@@ -322,7 +322,7 @@ function LocalMealCard({
               Protein: {n.protein_g}g • Carbs: {n.carbs_g}g • Fat: {n.fat_g}g
             </div>
           </div>
-          <HealthBadgesDropdown badges={meal.badges} className="mt-3" />
+          <HealthBadgesPopover badges={meal.badges} className="mt-3" />
         </div>
 
         {/* Ingredients */}

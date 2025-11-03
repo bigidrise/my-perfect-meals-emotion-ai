@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Users, ChefHat, ArrowLeft } from "lucide-react";
 import { toddlersMeals, type ToddlersMeal } from "@/data/toddlersMealsData";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import ShoppingAggregateBar from "@/components/ShoppingAggregateBar";
 
 const SERVING_OPTIONS = [1, 2, 3, 4] as const;
@@ -199,7 +199,7 @@ export default function ToddlersMealsHub() {
               <CardContent className="p-4">
                 <h3 className="font-bold text-lg mb-2 text-white">{meal.name}</h3>
                 <p className="text-sm text-white/80 mb-3 line-clamp-2">{meal.description}</p>
-                <HealthBadgesDropdown badges={meal.healthBadges} className="mt-2" />
+                <HealthBadgesPopover badges={meal.healthBadges} className="mt-2" />
               </CardContent>
             </Card>
           ))}
@@ -242,7 +242,7 @@ export default function ToddlersMealsHub() {
                 {/* Health Badges */}
                 <div className="mb-4">
                   <h3 className="font-bold text-lg mb-2 text-white">Health Benefits</h3>
-                  <HealthBadgesDropdown badges={selected.healthBadges} className="mt-2" />
+                  <HealthBadgesPopover badges={selected.healthBadges} className="mt-2" />
                 </div>
 
                 {/* Ingredients */}

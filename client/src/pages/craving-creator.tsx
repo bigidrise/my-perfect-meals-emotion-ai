@@ -34,7 +34,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import {
   generateMedicalBadges,
   getUserMedicalProfile,
@@ -827,7 +827,7 @@ export default function CravingCreator() {
                           <h3 className="font-semibold mb-2 text-white">
                             Medical Safety
                           </h3>
-                          <HealthBadgesDropdown badges={medicalBadges.map(b => b.badge)} className="mt-2" />
+                          <HealthBadgesPopover badges={medicalBadges.map(b => b.badge)} className="mt-2" />
                         </div>
                       ) : null;
                     })()}

@@ -33,7 +33,7 @@ import { Home, Sparkles, Clock, Users, ArrowUp, ArrowLeft, MapPin } from "lucide
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import HealthBadgesDropdown from "@/components/badges/HealthBadgesDropdown";
+import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import {
   generateMedicalBadges,
   getUserMedicalProfile,
@@ -526,13 +526,13 @@ export default function RestaurantGuidePage() {
                               mealForBadges as any,
                               userProfile,
                             );
-                            // Convert complex badge objects to simple strings for HealthBadgesDropdown
+                            // Convert complex badge objects to simple strings for HealthBadgesPopover
                             const badgeStrings = medicalBadges.map((b: any) => b.badge || b.label || b.id);
                             return (
                               badgeStrings &&
                               badgeStrings.length > 0 && (
                                 <div className="mb-3">
-                                  <HealthBadgesDropdown badges={badgeStrings} className="mt-2" />
+                                  <HealthBadgesPopover badges={badgeStrings} className="mt-2" />
                                 </div>
                               )
                             );
