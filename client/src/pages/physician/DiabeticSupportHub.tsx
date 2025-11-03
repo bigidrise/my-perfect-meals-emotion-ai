@@ -87,7 +87,7 @@ export default function DiabeticSupportHub() {
 
               <button
                 onClick={() => setLocation("/diabetes-support")}
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 Open Tracker
               </button>
