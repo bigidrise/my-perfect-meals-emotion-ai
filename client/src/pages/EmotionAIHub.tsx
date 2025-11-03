@@ -74,16 +74,16 @@ export default function EmotionAIHub() {
                   data-testid={feature.testId}
                 >
                   <CardContent className="p-3">
-                    <div className="flex items-center gap-3">
-                      <Icon className="h-5 w-5 text-white flex-shrink-0" />
-                      <div className="flex flex-col">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        <Icon className="h-4 w-4 text-white flex-shrink-0" />
                         <h3 className="text-sm font-semibold text-white">
                           {feature.title}
                         </h3>
-                        <p className="text-xs text-white/80">
-                          {feature.description}
-                        </p>
                       </div>
+                      <p className="text-xs text-white/80 ml-6">
+                        {feature.description}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
