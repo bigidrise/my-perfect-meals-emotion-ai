@@ -703,7 +703,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
         data-testid="button-back-dashboard"
       >
         <ArrowLeft className="h-4 w-4 mr-2" />
-        C
+        Client Dashboard
       </Button>
 
       {/* Fixed Client Dashboard Button - Top Right (only in ProCare mode) */}
