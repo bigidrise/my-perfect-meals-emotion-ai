@@ -771,8 +771,8 @@ export default function MyBiometrics() {
         {/* Header */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold text-white">📊 My Biometrics</CardTitle>
-            <p className="text-white/90 mt-2">Local-first tracking for macros, steps, body stats, and BP.</p>
+            <CardTitle className="text-2xl font-bold text-white">📊 My Biometrics</CardTitle>
+            <p className="text-white/90 text-sm mt-2">Local-first tracking for macros, steps, body stats, and BP.</p>
             <div className="mt-3 flex justify-center">
               <Button onClick={exportCSV} className="bg-orange-600 hover:bg-orange-700 text-white border border-white/20">Export CSV</Button>
             </div>
@@ -798,7 +798,7 @@ export default function MyBiometrics() {
 
         {/* MACROS */}
         <Card className="bg-black/30 backdrop-blur-lg border border-white/10">
-          <CardHeader><CardTitle className="text-white flex items-center gap-2"><BarChart3 className="h-5 w-5"/> Today's Macros</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="text-white text-lg flex items-center gap-2"><BarChart3 className="h-5 w-5"/> Today's Macros</CardTitle></CardHeader>
           <CardContent className="space-y-3">
               
               {/* Macro Targets Progress */}
