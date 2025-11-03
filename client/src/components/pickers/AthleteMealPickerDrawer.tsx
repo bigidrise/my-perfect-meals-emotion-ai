@@ -46,6 +46,8 @@ function convertAthleteMealToMeal(athleteMeal: AthleteMeal): Meal {
     .toString(36)
     .slice(2, 9)}`;
 
+  const totalCarbs = athleteMeal.macros.starchyCarbs + athleteMeal.macros.fibrousCarbs;
+
   return {
     id: uniqueId,
     title: athleteMeal.title,
@@ -55,7 +57,7 @@ function convertAthleteMealToMeal(athleteMeal: AthleteMeal): Meal {
     nutrition: {
       calories: athleteMeal.macros.kcal,
       protein: athleteMeal.macros.protein,
-      carbs: athleteMeal.macros.carbs,
+      carbs: totalCarbs,
       fat: athleteMeal.macros.fat,
     },
     badges: athleteMeal.tags,
@@ -186,7 +188,7 @@ export function AthleteMealPickerDrawer({
 
                 <div className="text-white/60 text-[10px] leading-tight">
                   {am.macros.kcal} kcal · P{am.macros.protein} · C
-                  {am.macros.carbs} · F{am.macros.fat}
+                  {am.macros.starchyCarbs + am.macros.fibrousCarbs} · F{am.macros.fat}
                 </div>
 
                 {am.tags?.length ? (
