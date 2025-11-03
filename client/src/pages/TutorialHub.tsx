@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { PlayCircle, ArrowLeft } from "lucide-react";
 
@@ -111,7 +112,12 @@ export default function TutorialHub() {
   const active = tutorials.find((t) => t.id === activeId) ?? null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Dashboard button at the top */}
         <div className="mb-4">
@@ -225,6 +231,6 @@ export default function TutorialHub() {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

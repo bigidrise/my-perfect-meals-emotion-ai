@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { ArrowLeft, Check, ChevronDown, ChevronUp, Edit2, Plus, ShoppingCart, Trash2, X } from "lucide-react";
 import { useLocation } from "wouter";
 import TrashButton from "@/components/ui/TrashButton";
@@ -144,7 +145,12 @@ export default function ShoppingListMasterView() {
   }, [checkedItems, opts.groupByAisle]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 pb-24">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 pb-24"
+    >
       <Button
         onClick={() => setLocation("/dashboard")}
         className="fixed top-4 left-4 z-50 bg-black/30 hover:bg-black/50 text-white rounded-2xl border border-white/10 backdrop-blur-lg"
@@ -647,6 +653,6 @@ export default function ShoppingListMasterView() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

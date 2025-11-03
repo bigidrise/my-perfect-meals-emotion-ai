@@ -18,6 +18,7 @@
 //
 // BACKUP: Restaurant Guide system working perfectly - NO CHANGES NEEDED
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -339,7 +340,11 @@ export default function RestaurantGuidePage() {
 
   return (
     <PhaseGate phase="PHASE_1_CORE" feature="restaurant-guide">
-      <>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         {/* Portal-like button positioned outside the main stacking context */}
       <Button
         variant="ghost"
@@ -689,7 +694,7 @@ export default function RestaurantGuidePage() {
         </div>
       </div>
     </div>
-    </>
+    </motion.div>
     </PhaseGate>
   );
 }

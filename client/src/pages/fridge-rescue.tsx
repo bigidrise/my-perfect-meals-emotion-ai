@@ -3,6 +3,7 @@
 // BACKUP: backups/fridge-rescue-stable-version.tsx
 // FEATURES: Perfect fridge ingredient rescue, AI meal generation, ingredient optimization, medical personalization
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowUp,
@@ -461,7 +462,12 @@ const FridgeRescuePage = () => {
 
   return (
     <PhaseGate phase="PHASE_1_CORE" feature="fridge-rescue">
-      <div className="min-h-screen p-6 bg-gradient-to-br from-black/60 via-orange-600 to-black/80">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="min-h-screen p-6 bg-gradient-to-br from-black/60 via-orange-600 to-black/80"
+      >
         <div className="max-w-4xl mx-auto">
         <button
           onClick={() => {
@@ -815,7 +821,7 @@ const FridgeRescuePage = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
     </PhaseGate>
   );
 };

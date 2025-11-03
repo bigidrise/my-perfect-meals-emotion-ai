@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -213,7 +214,12 @@ export default function CareTeamPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 sm:p-6">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4 sm:p-6"
+    >
       {/* Back / Home */}
       <button
         onClick={() => setLocation("/dashboard")}
@@ -424,7 +430,7 @@ export default function CareTeamPage() {
           <ArrowLeft className="rotate-90 w-5 h-5" />
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

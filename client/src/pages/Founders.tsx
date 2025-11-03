@@ -1,4 +1,5 @@
 import { useLocation } from "wouter";
+import { motion } from "framer-motion";
 import { ArrowLeft, Award, Home } from "lucide-react";
 
 type Founder = {
@@ -29,7 +30,12 @@ export default function FoundersPage() {
   const [, setLocation] = useLocation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 pt-20 pb-12">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 pt-20 pb-12"
+    >
       <button
         aria-label="Go back to dashboard"
         onClick={() => setLocation("/dashboard")}
@@ -82,6 +88,6 @@ export default function FoundersPage() {
 
         <div className="h-6" />
       </section>
-    </div>
+    </motion.div>
   );
 }

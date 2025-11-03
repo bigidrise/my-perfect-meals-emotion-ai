@@ -1,5 +1,6 @@
 // client/src/pages/pro/ProClientDashboard.tsx
 import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { useLocation, useRoute } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -141,7 +142,12 @@ export default function ProClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen p-4 text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen p-4 text-white bg-gradient-to-br from-black/60 via-orange-600 to-black/80"
+    >
       {/* Back Button */}
       <button
         onClick={() => setLocation("/pro/clients")}
@@ -722,6 +728,6 @@ export default function ProClientDashboard() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </motion.div>
   );
 }

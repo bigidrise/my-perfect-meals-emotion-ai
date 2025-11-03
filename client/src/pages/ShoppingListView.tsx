@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useLocation, useParams } from "wouter";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -198,7 +199,12 @@ export default function ShoppingListView() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80"
+    >
       <div className="max-w-2xl mx-auto p-4 space-y-4">
         {/* Dashboard Button */}
         <div className="flex justify-start">
@@ -435,6 +441,6 @@ export default function ShoppingListView() {
           reasons={getShoppingListWhy()}
         />
       )}
-    </div>
+    </motion.div>
   );
 }

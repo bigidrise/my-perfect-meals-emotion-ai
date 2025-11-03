@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -375,7 +376,12 @@ export default function Learn() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 pb-20">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 pb-20"
+    >
       {/* Header */}
       <div className="bg-black/40 backdrop-blur-md border-b border-white/10 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -514,6 +520,6 @@ export default function Learn() {
 
       {/* Emotion AI Footer */}
       <EmotionAIFooter />
-    </div>
+    </motion.div>
   );
 }
