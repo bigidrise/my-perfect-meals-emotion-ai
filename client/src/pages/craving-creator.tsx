@@ -410,7 +410,7 @@ export default function CravingCreator() {
       <GlassButton
         onClick={() => setLocation("/craving-hub")}
         icon={<ArrowLeft className="h-4 w-4" />}
-        className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 p-2 bg-black/10 backdrop-blur-none"
+        className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 !p-2 !gap-0 bg-black/10 backdrop-blur-none"
         style={{
           WebkitTouchCallout: "none",
           WebkitUserSelect: "none",
