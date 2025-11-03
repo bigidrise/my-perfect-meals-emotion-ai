@@ -407,20 +407,13 @@ export default function CravingCreator() {
         className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 p-4"
       >
         {/* Hub button moved outside container with ultra-high z-index */}
-      <GlassButton
+      <button
         onClick={() => setLocation("/craving-hub")}
-        icon={<ArrowLeft className="h-4 w-4" />}
-        className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 !p-2 !gap-0 bg-black/10 backdrop-blur-none"
-        style={{
-          WebkitTouchCallout: "none",
-          WebkitUserSelect: "none",
-          touchAction: "manipulation",
-          pointerEvents: "auto",
-        }}
+        className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 p-2 bg-black/10 backdrop-blur-md border border-white/20 rounded-xl text-white hover:bg-black/30 transition-all"
         data-testid="hub-button-mobile-fix"
       >
-      
-      </GlassButton>
+        <ArrowLeft className="h-4 w-4" />
+      </button>
 
       {/* Premium Feature Banner */}
       <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50 bg-black/30 backdrop-blur-lg border border-white/10 rounded-xl px-3 sm:px-4 py-2 text-white shadow-2xl">
