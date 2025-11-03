@@ -4,11 +4,6 @@ import { Home, Calendar, Sparkles, Crown } from "lucide-react";
 export default function BottomNav() {
   const [location, setLocation] = useLocation();
 
-  // Hide bottom nav on Weekly Meal Board to prevent overlap with shopping list banner
-  if (location === "/weekly-meal-board") {
-    return null;
-  }
-
   const navItems = [
     {
       id: "home",
