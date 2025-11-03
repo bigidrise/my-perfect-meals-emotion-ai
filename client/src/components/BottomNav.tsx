@@ -64,7 +64,7 @@ export default function BottomNav() {
                   )}
                   <Icon className={`relative h-4 w-4 transition-all duration-300 ${active ? "scale-100 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]" : ""}`} />
                 </div>
-                <span className={`text-[10px] mt-0.5 font-medium transition-all duration-300 ${active ? "font-bold text-orange-500" : ""}`}>
+                <span className={`text-[11px] mt-0.5 font-medium transition-all duration-300 ${active ? "font-bold text-orange-500" : ""}`}>
                   {item.label}
                 </span>
               </button>
