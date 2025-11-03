@@ -379,20 +379,6 @@ export default function Learn() {
       {/* Header */}
       <div className="bg-black/40 backdrop-blur-md border-b border-white/10 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg">
-              <BookOpen className="h-8 w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-white">
-                Learn
-              </h1>
-              <p className="text-sm text-white/90 mt-1 font-medium">
-                Your nutrition & wellness library
-              </p>
-            </div>
-          </div>
-
           {/* Search Bar */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange-400" />
