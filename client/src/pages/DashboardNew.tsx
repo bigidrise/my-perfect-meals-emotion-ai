@@ -132,7 +132,7 @@ export default function DashboardNew() {
               return (
                 <Card
                   key={feature.testId}
-                  className="cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] active:scale-95 bg-black/30 backdrop-blur-lg border border-white/10 hover:border-orange-500/50 rounded-2xl shadow-md"
+                  className={`cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] active:scale-95 bg-black/30 backdrop-blur-lg border border-white/10 hover:border-orange-500/50 rounded-2xl shadow-md ${feature.testId === 'card-care-team' ? 'hidden' : ''}`}
                   onClick={() => handleCardClick(feature.route)}
                   data-testid={feature.testId}
                 >
