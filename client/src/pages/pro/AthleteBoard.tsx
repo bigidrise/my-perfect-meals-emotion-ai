@@ -651,7 +651,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
 
   if (loading && !board) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-black flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 flex items-center justify-center">
         <div className="text-white text-center">
           <div className="animate-spin rounded-2xl h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
           <p>Loading Athlete Meal Board...</p>
@@ -662,7 +662,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
 
   if (!board) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-black flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 flex items-center justify-center">
         <div className="text-white text-center">
           <p>Failed to load board</p>
         </div>
@@ -677,7 +677,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
       : board.lists;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-black text-white pb-40">
+    <div className="min-h-screen bg-gradient-to-br from-black/60 via-orange-600 to-black/80 text-white pb-40">
       {/* Fixed Back to Dashboard Button - Top Left */}
       <Button
         size="sm"
@@ -703,7 +703,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
       )}
 
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-indigo-950/95 backdrop-blur-xl border-b border-white/20 shadow-2xl">
+      <div className="bg-black/40 backdrop-blur-xl border-b border-white/20 shadow-2xl">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-center mt-16">
             <div className="bg-black/60 backdrop-blur-none border border-white/20 rounded-2xl px-6 py-3 flex items-center gap-3">
