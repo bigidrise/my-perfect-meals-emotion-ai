@@ -1,6 +1,5 @@
 import { useLocation } from "wouter";
 import { ArrowLeft, Award } from "lucide-react";
-import founderPhoto from "@assets/founder-photo.png";
 
 type Founder = {
   id: string;
@@ -10,7 +9,7 @@ type Founder = {
 };
 
 const FOUNDERS: Founder[] = [
-  { id: "1", name: "Coach Idrise", img: founderPhoto, badge: "Gold Founder" },
+  { id: "1", name: "Coach Idrise", img: "/assets/founder-photo.png", badge: "Gold Founder" },
   { id: "2", name: "A. Believer", img: "/assets/MPMTransparentLogo.png" },
   { id: "3", name: "B. Believer", img: "/assets/MPMTransparentLogo.png", badge: "Top Supporter" },
   { id: "4", name: "C. Believer", img: "/assets/MPMTransparentLogo.png" },
