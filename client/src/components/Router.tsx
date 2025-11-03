@@ -51,6 +51,7 @@ import {
 // Dashboard navigation pages
 import TutorialHub from "@/pages/TutorialHub";
 import MyBiometrics from "@/pages/my-biometrics";
+import BodyComposition from "@/pages/biometrics/body-composition";
 import GetInspiration from "@/pages/GetInspiration";
 
 // DELETED: All non-MVP pages (hubs, specialty features, etc.)
@@ -164,7 +165,8 @@ export default function Router() {
 
         {/* Biometric sub-pages */}
         <Route path="/biometrics" component={MyBiometrics} />
-        {/* DELETED: BodyCompositionPro, SleepInsights, StepsActivity routes */}
+        <Route path="/biometrics/body-composition" component={BodyComposition} />
+        {/* TODO: Add SleepInsights route when page is provided */}
 
         {/* ✅ NEW: Unified Food Logging Routes */}
         {/* <Route path="/food" component={FoodLogToday} /> */} {/* TEMPORARILY DISABLED - File missing */}
