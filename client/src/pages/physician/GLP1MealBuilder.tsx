@@ -46,7 +46,7 @@ import { fetchLabRules } from "@/lib/labsClient";
 import type { LabRules } from "@/lib/labsClient";
 
 // GLP-1 data
-import { glp1Meals, type GLP1Meal } from "@/data/glp1MealsData";
+import { glp1Meals, type GLP1Meal } from "@/data/GLP1MealsData";
 
 // ===== Local "Smart-like" types & helpers (to mirror Smart builder) =====
 // Fixed mode for GLP-1 users (no scaling needed - weight loss meds)
