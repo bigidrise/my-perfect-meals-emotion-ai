@@ -28,7 +28,6 @@ import {
   Brain,
   Target,
   Sparkles,
-  ArrowUp,
   Home,
   Users,
   ArrowLeft,
@@ -141,7 +140,6 @@ export default function CravingCreator() {
   const [cravingInput, setCravingInput] = useState("");
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
   const [savedMeals, setSavedMeals] = useState(new Set<string>());
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [generatedMeals, setGeneratedMeals] = useState<MealData[]>([]);
   const [selectedDiet, setSelectedDiet] = useState<string>("");
   const [servings, setServings] = useState<number>(1); // NEW: Serving size support (1-10)
@@ -214,20 +212,6 @@ export default function CravingCreator() {
       setReplacingMeal(JSON.parse(replacing));
     }
   }, []);
-
-  // Back to top functionality
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   // 🔋 Progress ticker functions (same as Restaurant Guide)
   const startProgressTicker = () => {
@@ -928,19 +912,6 @@ export default function CravingCreator() {
           </div>
         )}
       </div>
-
-      {/* Centered Back to Top Arrow */}
-      {showBackToTop && (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-          <button
-            onClick={scrollToTop}
-            className="bg-black/30 backdrop-blur-lg border border-white/20 text-white hover:bg.black/40 rounded-full w-14 h-14 p-0 shadow-xl"
-            aria-label="Scroll to top"
-          >
-            <ArrowUp className="h-6 w-6" />
-          </button>
-        </div>
-      )}
 
       {/* Shopping Aggregate Bar */}
       {generatedMeals.length > 0 && (
