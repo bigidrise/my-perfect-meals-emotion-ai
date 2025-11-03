@@ -84,14 +84,14 @@ function formatWeekLabel(weekStartISO: string): string {
   return `${fmt(start)}–${fmt(end)}`;
 }
 
-// Competition Prep Meal Slots: 6 meals mapped to underlying storage slots
+// Competition Prep Meal Slots: 6 meals mapped to underlying storage slots with specific indices
 const ATHLETE_MEAL_SLOTS = [
-  { label: "First Meal", slot: "breakfast" as const },
-  { label: "Second Meal", slot: "breakfast" as const },
-  { label: "Third Meal", slot: "lunch" as const },
-  { label: "Fourth Meal", slot: "lunch" as const },
-  { label: "Fifth Meal", slot: "dinner" as const },
-  { label: "Sixth Meal", slot: "snacks" as const },
+  { label: "First Meal", slot: "breakfast" as const, index: 0 },
+  { label: "Second Meal", slot: "breakfast" as const, index: 1 },
+  { label: "Third Meal", slot: "lunch" as const, index: 0 },
+  { label: "Fourth Meal", slot: "lunch" as const, index: 1 },
+  { label: "Fifth Meal", slot: "dinner" as const, index: 0 },
+  { label: "Sixth Meal", slot: "snacks" as const, index: 0 },
 ];
 
 interface AthleteBoardProps {
@@ -178,10 +178,12 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
   const [pickerList, setPickerList] = React.useState<
     "breakfast" | "lunch" | "dinner" | "snacks" | null
   >(null);
+  const [pickerMealIndex, setPickerMealIndex] = React.useState<number>(0);
   const [manualModalOpen, setManualModalOpen] = React.useState(false);
   const [manualModalList, setManualModalList] = React.useState<
     "breakfast" | "lunch" | "dinner" | "snacks" | null
   >(null);
+  const [manualModalMealIndex, setManualModalMealIndex] = React.useState<number>(0);
   const [showSnackModal, setShowSnackModal] = React.useState(false);
   const [showOverview, setShowOverview] = React.useState(false);
 
@@ -532,6 +534,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
   async function quickAdd(
     list: "breakfast" | "lunch" | "dinner" | "snacks",
     meal: Meal,
+    mealIndex: number,
   ) {
     if (!board) return;
 
@@ -542,18 +545,22 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
         activeDayISO
       ) {
         const dayLists = getDayLists(board, activeDayISO);
+        const newSlotList = [...dayLists[list as keyof typeof dayLists]];
+        newSlotList[mealIndex] = meal; // Set at specific index
         const updatedDayLists = {
           ...dayLists,
-          [list]: [...dayLists[list as keyof typeof dayLists], meal],
+          [list]: newSlotList,
         };
         const updatedBoard = setDayLists(board, activeDayISO, updatedDayLists);
         await saveBoard(updatedBoard);
       } else {
+        const newSlotList = [...board.lists[list]];
+        newSlotList[mealIndex] = meal; // Set at specific index
         const updatedBoard = {
           ...board,
           lists: {
             ...board.lists,
-            [list]: [...board.lists[list], meal],
+            [list]: newSlotList,
           },
           version: board.version + 1,
           meta: {
@@ -581,15 +588,18 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
     }
   }
 
-  const openPicker = (list: "breakfast" | "lunch" | "dinner" | "snacks") => {
+  const openPicker = (list: "breakfast" | "lunch" | "dinner" | "snacks", mealIndex: number) => {
     setPickerList(list);
+    setPickerMealIndex(mealIndex);
     setPickerOpen(true);
   };
 
   const openManualModal = (
     list: "breakfast" | "lunch" | "dinner" | "snacks",
+    mealIndex: number,
   ) => {
     setManualModalList(list);
+    setManualModalMealIndex(mealIndex);
     setManualModalOpen(true);
   };
 
@@ -873,8 +883,9 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
       <div className="container mx-auto px-4 pb-6">
         <div className="grid grid-cols-1 gap-6">
           {/* Render Meal Slots (Meal 1-7) */}
-          {ATHLETE_MEAL_SLOTS.map(({ label, slot }, index) => {
-            const meals = currentLists[slot];
+          {ATHLETE_MEAL_SLOTS.map(({ label, slot, index: mealIndex }) => {
+            const allMeals = currentLists[slot];
+            const meal = allMeals[mealIndex]; // Get only the meal at this specific index
 
             return (
               <section
@@ -889,7 +900,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                   <div className="flex gap-2">
                     <Button
                       size="sm"
-                      onClick={() => openPicker(slot)}
+                      onClick={() => openPicker(slot, mealIndex)}
                       className="bg-black/60 backdrop-blur-sm rounded-2xl border border-white/20 text-white hover:bg-black/80"
                       data-testid={`button-add-${label.toLowerCase().replace(" ", "-")}`}
                     >
@@ -898,7 +909,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                     </Button>
                     <Button
                       size="sm"
-                      onClick={() => openManualModal(slot)}
+                      onClick={() => openManualModal(slot, mealIndex)}
                       className="bg-black/60 backdrop-blur-sm border border-white/20 text-white hover:bg-black/80"
                       data-testid={`button-manual-${label.toLowerCase().replace(" ", "-")}`}
                     >
@@ -908,7 +919,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                 </div>
 
                 <div className="space-y-3">
-                  {meals.map((meal: Meal, idx: number) => (
+                  {meal && (
                     <MealCard
                       key={meal.id}
                       date={activeDayISO || "board"}
@@ -916,7 +927,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                       meal={meal}
                       onUpdated={(m) => {
                         if (m === null) {
-                          // Remove meal
+                          // Remove meal at this specific index
                           if (!board) return;
 
                           if (
@@ -925,11 +936,11 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                             activeDayISO
                           ) {
                             const dayLists = getDayLists(board, activeDayISO);
+                            const newSlotList = [...dayLists[slot]];
+                            newSlotList.splice(mealIndex, 1); // Remove at specific index
                             const updatedDayLists = {
                               ...dayLists,
-                              [slot]: dayLists[slot].filter(
-                                (item: Meal) => item.id !== meal.id,
-                              ),
+                              [slot]: newSlotList,
                             };
                             const updatedBoard = setDayLists(
                               board,
@@ -939,13 +950,13 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                             setBoard(updatedBoard);
                             saveBoard(updatedBoard).catch(console.error);
                           } else {
+                            const newSlotList = [...board.lists[slot]];
+                            newSlotList.splice(mealIndex, 1); // Remove at specific index
                             const updatedBoard = {
                               ...board,
                               lists: {
                                 ...board.lists,
-                                [slot]: board.lists[slot].filter(
-                                  (item: Meal) => item.id !== meal.id,
-                                ),
+                                [slot]: newSlotList,
                               },
                               version: board.version + 1,
                               meta: {
@@ -957,18 +968,18 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                             saveBoard(updatedBoard).catch(console.error);
                           }
                         } else {
-                          // Update meal
+                          // Update meal at this specific index
                           if (
                             FEATURES.dayPlanning === "alpha" &&
                             planningMode === "day" &&
                             activeDayISO
                           ) {
                             const dayLists = getDayLists(board, activeDayISO);
+                            const newSlotList = [...dayLists[slot]];
+                            newSlotList[mealIndex] = m; // Update at specific index
                             const updatedDayLists = {
                               ...dayLists,
-                              [slot]: dayLists[slot].map((item: Meal) =>
-                                item.id === meal.id ? m : item,
-                              ),
+                              [slot]: newSlotList,
                             };
                             const updatedBoard = setDayLists(
                               board,
@@ -978,13 +989,13 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                             setBoard(updatedBoard);
                             saveBoard(updatedBoard).catch(console.error);
                           } else {
+                            const newSlotList = [...board.lists[slot]];
+                            newSlotList[mealIndex] = m; // Update at specific index
                             const updatedBoard = {
                               ...board,
                               lists: {
                                 ...board.lists,
-                                [slot]: board.lists[slot].map((item: Meal) =>
-                                  item.id === meal.id ? m : item,
-                                ),
+                                [slot]: newSlotList,
                               },
                               version: board.version + 1,
                             };
@@ -994,10 +1005,10 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
                         }
                       }}
                     />
-                  ))}
-                  {meals.length === 0 && (
+                  )}
+                  {!meal && (
                     <div className="rounded-2xl border border-dashed border-purple-700 text-white/50 p-6 text-center text-sm">
-                      <p>No meals for {label}</p>
+                      <p>No meal for {label}</p>
                     </div>
                   )}
                 </div>
@@ -1258,7 +1269,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
         }}
         onPick={(meal) => {
           if (pickerList) {
-            quickAdd(pickerList, meal);
+            quickAdd(pickerList, meal, pickerMealIndex);
           }
           setPickerOpen(false);
           setPickerList(null);
@@ -1273,7 +1284,7 @@ export default function AthleteBoard({ mode = "athlete" }: AthleteBoardProps) {
         }}
         onSave={(meal) => {
           if (manualModalList) {
-            quickAdd(manualModalList, meal);
+            quickAdd(manualModalList, meal, manualModalMealIndex);
           }
           setManualModalOpen(false);
           setManualModalList(null);
