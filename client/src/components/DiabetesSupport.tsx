@@ -112,12 +112,12 @@ export function DiabetesSupport() {
       <div className="container mx-auto p-6 space-y-6 pb-20 relative z-10">
         {/* Navigation Button */}
         <button
-          onClick={() => setLocation("/blood-sugar-hub")}
+          onClick={() => setLocation("/diabetic-hub")}
           className="mb-6 flex items-center gap-2 bg-black/30 backdrop-blur-lg border border-white/20 hover:bg-black/40 text-white transition-all duration-200 px-4 py-2 rounded-lg shadow-xl relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/5 pointer-events-none" />
           <Home className="h-4 w-4 relative z-10" />
-          <span className="relative z-10">Blood Sugar Hub</span>
+          <span className="relative z-10">Diabetic Hub</span>
         </button>
 
         {/* Enhanced Glass Header */}
