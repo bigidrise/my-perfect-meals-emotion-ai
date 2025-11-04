@@ -394,7 +394,7 @@ export default function RestaurantGuidePage() {
               Enter what you're craving and your location to find healthy restaurant options near you.
             </p>
             <Button
-              onClick={() => setLocation("/craving-finder")}
+              onClick={() => setLocation("/meal-finder")}
               className="w-full bg-orange-600 hover:bg-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 font-semibold"
             >
               <MapPin className="h-4 w-4 mr-2" />
