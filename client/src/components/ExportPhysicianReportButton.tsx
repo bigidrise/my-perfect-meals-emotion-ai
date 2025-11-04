@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 interface ExportPhysicianReportButtonProps {
   mealPlan: Array<{
@@ -84,7 +85,7 @@ export function ExportPhysicianReportButton({
       const userStr = localStorage.getItem("currentUser");
       const user = userStr ? JSON.parse(userStr) : {};
 
-      const response = await fetch("/api/physician-reports", {
+      const data = await apiRequest("/api/physician-reports", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,12 +101,6 @@ export function ExportPhysicianReportButton({
           clinicalNotes: `Generated from Medical Diets Hub on ${new Date().toLocaleDateString()}`,
         }),
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to generate report");
-      }
-
-      const data = await response.json();
       setShareableLink(data.shareableLink);
       setAccessCode(data.report.accessCode);
       setShowDialog(true);

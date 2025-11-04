@@ -34,22 +34,7 @@ import {
   ArrowLeft,
   Info,
 } from "lucide-react";
-
-// ---------- Simple API shim (replace with your real endpoints when ready) ----------
-async function apiRequest<T = any>(
-  url: string,
-  options?: RequestInit,
-): Promise<T> {
-  const res = await fetch(url, {
-    headers: {
-      "Content-Type": "application/json",
-      ...(options?.headers || {}),
-    },
-    ...options,
-  });
-  if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
-  return res.json();
-}
+import { apiRequest } from "@/lib/queryClient";
 
 // Types
 type Role = "trainer" | "doctor" | "nutritionist" | "other";
@@ -93,7 +78,7 @@ export default function CareTeamPage() {
     (async () => {
       try {
         setLoading(true);
-        const data = await apiRequest<{ members: CareMember[] }>("/api/care-team");
+        const data = await apiRequest("/api/care-team");
         if (mounted) setMembers(data.members);
 
         // Check for invite code in URL (e.g., /care-team?code=MP-XXXX-XXX)
@@ -103,7 +88,7 @@ export default function CareTeamPage() {
         if (codeFromUrl && mounted) {
           // Auto-accept invitation from URL
           try {
-            const response = await apiRequest<{ member: CareMember }>("/api/care-team/connect", { 
+            const response = await apiRequest("/api/care-team/connect", { 
               method: "POST", 
               body: JSON.stringify({ code: codeFromUrl }) 
             });
@@ -148,7 +133,7 @@ export default function CareTeamPage() {
     }
     try {
       setLoading(true);
-      const response = await apiRequest<{ member: CareMember }>("/api/care-team/invite", { 
+      const response = await apiRequest("/api/care-team/invite", { 
         method: "POST", 
         body: JSON.stringify({ email: invEmail, role, permissions: perms }) 
       });
@@ -171,7 +156,7 @@ export default function CareTeamPage() {
     }
     try {
       setLoading(true);
-      const response = await apiRequest<{ member: CareMember }>("/api/care-team/connect", { 
+      const response = await apiRequest("/api/care-team/connect", { 
         method: "POST", 
         body: JSON.stringify({ code: accessCode }) 
       });
