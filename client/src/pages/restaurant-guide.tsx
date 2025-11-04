@@ -33,6 +33,7 @@ import { Home, Sparkles, Clock, Users, ArrowLeft, MapPin } from "lucide-react";
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import HealthBadgesPopover from "@/components/badges/HealthBadgesPopover";
 import {
   generateMedicalBadges,
@@ -241,10 +242,7 @@ export default function RestaurantGuidePage() {
   // Restaurant meal generation mutation
   const generateMealsMutation = useMutation({
     mutationFn: async (params: { restaurantName: string; cuisine: string }) => {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
-
-      const response = await fetch("/api/restaurants/analyze-menu", {
+      return apiRequest("/api/restaurants/analyze-menu", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -252,16 +250,7 @@ export default function RestaurantGuidePage() {
           cuisine: params.cuisine,
           userId: localStorage.getItem("userId") || "1",
         }),
-        signal: controller.signal,
       });
-
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        throw new Error("Failed to generate restaurant meals");
-      }
-
-      return response.json();
     },
     onMutate: () => {
       startProgressTicker();

@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
+import { apiRequest } from '@/lib/queryClient';
 
 interface MealIngredientPickerProps {
   open: boolean;
@@ -86,21 +87,14 @@ export default function MealIngredientPicker({
         allIngredients.push(...customIngredients.split(',').map(i => i.trim()).filter(Boolean));
       }
 
-      const response = await fetch('/api/meals/fridge-rescue', {
+      const data = await apiRequest('/api/meals/fridge-rescue', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({
           fridgeItems: allIngredients,
           userId: 1
         })
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to generate meal');
-      }
-
-      const data = await response.json();
       console.log('🍳 AI Meal Creator received data:', data);
 
       const generatedMeal = data.meals?.[0];
