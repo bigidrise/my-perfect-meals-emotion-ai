@@ -85,6 +85,9 @@ import MedicalDietsHub from "@/pages/physician/MedicalDietsHub";
 import CravingHub from "@/pages/CravingHub";
 import CravingPresets from "@/pages/CravingPresets";
 
+// Meal Finder
+import MealFinder from "@/pages/MealFinder";
+
 // Founders page
 import FoundersPage from "@/pages/Founders";
 
@@ -249,6 +252,9 @@ export default function Router() {
         {/* Craving Creator Routes */}
         <Route path="/craving-hub" component={CravingHub} />
         <Route path="/craving-presets" component={CravingPresets} />
+
+        {/* Meal Finder Route */}
+        <Route path="/meal-finder" component={MealFinder} />
 
         {/* Founders Route */}
         <Route path="/founders" component={FoundersPage} />
